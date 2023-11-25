@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <h1>The Busy Gamer Web App</h1>
+      <h1 className="text-3xl font-bold">The Busy Gamer Web App</h1>
     </>
   );
 }
