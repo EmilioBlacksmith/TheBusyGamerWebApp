@@ -1,4 +1,10 @@
+import React from "react";
+
 export default function Header() {
+  const [isModalOpen, setModalState] = React.useState(false);
+
+  const toggleModal = () => setModalState(!isModalOpen);
+
   return (
     <>
       <div className="w-5/6 h-24 rounded-b-xl bg-app-secondary drop-shadow-md sticky top-0 flex flex-row items-center justify-between p-8">
@@ -14,7 +20,10 @@ export default function Header() {
           </a>
         </div>
         <div className="flex flex-row gap-3">
-          <div className="bg-app-complementary h-10 w-10 rounded-md items-center justify-center flex text-xl drop-shadow-md hover:cursor-pointer hover:scale-105">
+          <div
+            className="bg-app-complementary h-10 w-10 rounded-md items-center justify-center flex text-xl drop-shadow-md hover:cursor-pointer hover:scale-105"
+            onClick={toggleModal}
+          >
             
           </div>
           <div className="bg-app-complementary h-10 w-10 rounded-md items-center pl-3 flex text-lg drop-shadow-md hover:cursor-pointer hover:scale-105">
