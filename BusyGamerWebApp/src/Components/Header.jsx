@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "./Modal";
 
 export default function Header() {
-  const [isModalOpen, setModalState] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleModal = () => setModalState(!isModalOpen);
+  const toggleModal = () => setIsOpen(!isOpen);
 
   return (
     <>
@@ -30,6 +31,18 @@ export default function Header() {
             
           </div>
         </div>
+
+        <Modal open={isOpen} onClose={toggleModal}>
+          <div className="text-xl font-bold">ABOUT:</div>
+          <div className="font-normal">
+            The Busy Gamer App, allows you to track the videogames that you want
+            to play, and it helps you to calculate approximately how long it's
+            going to take you to finish all those games. (not everyone can play
+            more than 2 hours a day :c )
+          </div>
+          <div className="text-xl font-bold">HOW IT WORKS?</div>
+          <div className="font-normal">idk, lol kill me...</div>
+        </Modal>
       </div>
     </>
   );

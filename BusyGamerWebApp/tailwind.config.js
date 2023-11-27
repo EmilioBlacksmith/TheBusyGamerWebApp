@@ -9,6 +9,7 @@ export default {
       "app-complementary": "#0063AA",
       "app-grey": "#696969",
       white: "#FFF",
+      black: "#000",
     },
     fontFamily: {
       sans: ["JetBrains"],
