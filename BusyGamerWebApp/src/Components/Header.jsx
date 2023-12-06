@@ -8,26 +8,26 @@ export default function Header() {
 
   return (
     <>
-      <div className="w-5/6 h-24 rounded-b-xl bg-app-secondary drop-shadow-md sticky top-0 flex flex-row items-center justify-between p-8">
+      <div className="sticky top-0 z-10 flex h-24 w-5/6 flex-row items-center justify-between rounded-b-xl bg-app-secondary p-8 drop-shadow-lg">
         <div className="text-4xl font-bold">
           <a
             href="/"
-            className="hover:text-app-complementary hover:cursor-pointer"
+            className="hover:cursor-pointer hover:text-app-complementary transition-all ease-in-out duration-150"
           >
             The Busy Gamer
           </a>
-          <a className="text-sm font-thin text-app-grey pl-8">
+          <a className="pl-8 text-sm font-thin text-app-grey">
             I can only play 2 hours... :(
           </a>
         </div>
         <div className="flex flex-row gap-3">
           <div
-            className="bg-app-complementary h-10 w-10 rounded-md items-center justify-center flex text-xl drop-shadow-md hover:cursor-pointer hover:scale-105"
+            className="flex h-10 w-10 items-center justify-center rounded-md bg-app-complementary text-xl drop-shadow-md hover:scale-105 hover:cursor-pointer transition-all ease-in-out duration-150"
             onClick={toggleModal}
           >
             
           </div>
-          <div className="bg-app-complementary h-10 w-10 rounded-md items-center pl-3 flex text-lg drop-shadow-md hover:cursor-pointer hover:scale-105">
+          <div className="flex h-10 w-10 items-center rounded-md bg-app-complementary pl-3 text-lg drop-shadow-md hover:scale-105 hover:cursor-pointer transition-all ease-in-out duration-150">
             
           </div>
         </div>

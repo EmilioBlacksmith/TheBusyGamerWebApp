@@ -24,17 +24,27 @@ export default function Latest() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-8 p-4 w-4/5">
-      <div>These are the latest games...</div>
-      <div className="flex gap-8 flex-wrap">
+    <div className="flex w-5/6 flex-col gap-8 p-4">
+      <div className="text-3xl font-extrabold p-2">
+        POPULAR RIGHT NOW
+        <div className="bg-app-complementary w-1/3 h-2"></div>
+      </div>
+      <div className="flex flex-wrap justify-between gap-x-8 gap-y-16">
         {data.map((item) => (
-          <div key={item.id} className="w-64">
-            <img
-              src={item.imageUrl}
-              alt={item.name}
-              className="w-full h-3/4 rounded-md hover:scale-105"
-            />
-            <p>{item.name}</p>
+          <div
+            key={item.id}
+            style={{ backgroundImage: `url(${item.imageUrl})` }}
+            className="h-80 w-64 rounded-xl bg-cover bg-no-repeat bg-center hover:backdrop-blur-3xl drop-shadow-lg"
+          >
+            <div className="flex flex-col gap-2 justify-center items-center rounded-lg h-full w-full bg-black bg-opacity-70 opacity-0 backdrop-blur-md hover:opacity-100 drop-shadow-lg p-2 text-center transition-all ease-in-out duration-200 cursor-default">
+              <div>{item.name}</div>
+              <div>Main Story</div>
+              <div>{item.gameplayMain} Hours</div>
+              <div>Main + Extra</div>
+              <div>{item.gameplayMainExtra} Hours</div>
+              <div>Completionist</div>
+              <div>{item.gameplayCompletionist} Hours</div>
+            </div>
           </div>
         ))}
       </div>
