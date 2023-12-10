@@ -38,13 +38,13 @@ export default function Latest() {
           >
             <div className="flex flex-col gap-2 justify-center items-center rounded-lg h-full w-full bg-black bg-opacity-75 opacity-0 backdrop-blur-md hover:opacity-100 drop-shadow-lg p-2 text-center transition-all ease-in-out duration-200 cursor-default">
               <div className="font-bold text-2xl">{item.name}</div>
-              <div className="font-semibold text-base">Main Story:</div>
+              <div className="font-semibold text-sm">Main Story:</div>
               <div className="font-thin text-lg">{item.gameplayMain} Hours</div>
-              <div className="font-semibold text-base">Main + Extra:</div>
+              <div className="font-semibold text-sm">Main + Extra:</div>
               <div className="font-thin text-lg">
                 {item.gameplayMainExtra} Hours
               </div>
-              <div className="font-semibold text-base">Completionist:</div>
+              <div className="font-semibold text-sm">Completionist:</div>
               <div className="font-thin text-lg">
                 {item.gameplayCompletionist} Hours
               </div>
