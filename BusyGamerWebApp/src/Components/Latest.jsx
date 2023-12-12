@@ -39,7 +39,7 @@ export default function Latest() {
             style={{ backgroundImage: `url(${item.imageUrl})` }}
             className="h-80 w-64 rounded-xl bg-cover bg-no-repeat bg-center hover:backdrop-blur-3xl drop-shadow-lg -mt-4 align-bottom mb-4"
           >
-            <div className="flex flex-col gap-2 justify-center items-center rounded-lg h-full w-full bg-black bg-opacity-75 opacity-0 backdrop-blur-md hover:opacity-100 drop-shadow-lg p-2 text-center transition-all ease-in-out duration-200 cursor-default">
+            <div className="flex flex-col gap-2 justify-center items-center rounded-lg h-full w-full bg-black bg-opacity-75 opacity-0 backdrop-blur-md hover:opacity-100 drop-shadow-lg p-2 text-center transition-all ease-in-out duration-200 cursor-pointer">
               <div className="font-bold text-2xl">{item.name}</div>
               <div className="font-semibold text-sm -mb-3">Main Story:</div>
               <div className="font-thin text-lg">{item.gameplayMain} Hours</div>
@@ -53,7 +53,7 @@ export default function Latest() {
               </div>
             </div>
             <div
-              className="bg-app-complementary w-10 h-10 fixed flex justify-center items-center text-3xl font-black rounded-full -mt-8 outline outline-4 outline-white drop-shadow cursor-pointer self-end right-0 hover:scale-110 transition-all hover:drop-shadow-xl"
+              className="bg-app-complementary w-10 h-10 fixed flex justify-center items-center text-3xl font-black rounded-full -mt-8 outline outline-2 outline-white drop-shadow cursor-pointer self-end right-0 hover:scale-110 transition-all hover:drop-shadow-xl"
               onClick={() => {
                 console.log("add:", item.name);
               }}
