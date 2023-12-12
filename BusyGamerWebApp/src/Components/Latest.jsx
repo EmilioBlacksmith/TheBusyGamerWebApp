@@ -13,6 +13,9 @@ export default function Latest() {
         const response = await fetch(baseURL);
         const jsonData = await response.json();
 
+        //delete last entry // update information entry
+        jsonData.pop();
+
         // Update the state with the fetched data
         setData(jsonData);
       } catch (error) {
@@ -29,25 +32,33 @@ export default function Latest() {
         POPULAR RIGHT NOW
         <div className="bg-app-complementary w-1/3 h-2"></div>
       </div>
-      <div className="flex flex-wrap justify-between gap-x-8 gap-y-16">
+      <div className="flex flex-wrap justify-between gap-x-8 gap-y-16 mt-4">
         {data.map((item) => (
           <div
             key={item.id}
             style={{ backgroundImage: `url(${item.imageUrl})` }}
-            className="h-80 w-64 rounded-xl bg-cover bg-no-repeat bg-center hover:backdrop-blur-3xl drop-shadow-lg"
+            className="h-80 w-64 rounded-xl bg-cover bg-no-repeat bg-center hover:backdrop-blur-3xl drop-shadow-lg -mt-4 align-bottom mb-4"
           >
             <div className="flex flex-col gap-2 justify-center items-center rounded-lg h-full w-full bg-black bg-opacity-75 opacity-0 backdrop-blur-md hover:opacity-100 drop-shadow-lg p-2 text-center transition-all ease-in-out duration-200 cursor-default">
               <div className="font-bold text-2xl">{item.name}</div>
-              <div className="font-semibold text-base">Main Story:</div>
+              <div className="font-semibold text-sm -mb-3">Main Story:</div>
               <div className="font-thin text-lg">{item.gameplayMain} Hours</div>
-              <div className="font-semibold text-base">Main + Extra:</div>
+              <div className="font-semibold text-sm -mb-3">Main + Extra:</div>
               <div className="font-thin text-lg">
                 {item.gameplayMainExtra} Hours
               </div>
-              <div className="font-semibold text-base">Completionist:</div>
+              <div className="font-semibold text-sm -mb-3">Completionist:</div>
               <div className="font-thin text-lg">
                 {item.gameplayCompletionist} Hours
               </div>
+            </div>
+            <div
+              className="bg-app-complementary w-10 h-10 fixed flex justify-center items-center text-3xl font-black rounded-full -mt-8 outline outline-4 outline-white drop-shadow cursor-pointer self-end right-0 hover:scale-110 transition-all hover:drop-shadow-xl"
+              onClick={() => {
+                console.log("add:", item.name);
+              }}
+            >
+              +
             </div>
           </div>
         ))}

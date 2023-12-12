@@ -14,7 +14,7 @@ export default function Header() {
             href="/"
             className="hover:cursor-pointer hover:text-app-complementary transition-all ease-in-out duration-150"
           >
-            The Busy Gamer
+            󱑔 The Busy Gamer
           </a>
           <a className="pl-8 text-sm font-thin text-app-grey">
             I can only play 2 hours... :(
