@@ -3,8 +3,8 @@ import React from "react";
 export default function Footer() {
   return (
     <>
-      <div className="w-full h-28 bg-app-secondary flex justify-center">
-        <div className="w-5/6 flex items-center justify-between p-8 drop-shadow-l">
+      <div className="w-full h-28 bg-app-secondary flex justify-center drop-shadow-3xl">
+        <div className="w-5/6 flex items-center justify-between p-8">
           <div className="flex flex-col gap-1">
             <div className="text-sm font-extralight text-app-grey">
               Developed by{" "}
@@ -14,8 +14,8 @@ export default function Footer() {
                 className=" text-white hover:text-app-complementary"
               >
                 Emilio (Blackmsith)
-              </a>
-              || so much games, little time tho...
+              </a>{" "}
+              || so many games, little time...
             </div>
             <div className="text-sm font-extralight text-app-grey">
               The Busy Gamer App (2023) • Powered By{" "}

@@ -8,11 +8,11 @@ export default function Header() {
 
   return (
     <>
-      <div className="sticky top-0 z-10 flex h-24 w-5/6 flex-row items-center justify-between rounded-b-xl bg-app-secondary p-8 drop-shadow-lg">
+      <div className="sticky top-0 z-10 flex h-24 w-5/6 flex-row items-center justify-between rounded-b-xl bg-app-secondary p-8 drop-shadow-3xl">
         <div className="text-4xl font-bold">
           <a
             href="/"
-            className="hover:cursor-pointer hover:text-app-complementary transition-all ease-in-out duration-150"
+            className="hover:cursor-pointer hover:text-app-complementary hover:drop-shadow-3xl transition-all ease-in-out duration-150"
           >
             󱑔 The Busy Gamer
           </a>
@@ -22,12 +22,12 @@ export default function Header() {
         </div>
         <div className="flex flex-row gap-3">
           <div
-            className="flex h-10 w-10 items-center justify-center rounded-md bg-app-complementary text-xl drop-shadow-md hover:scale-105 hover:cursor-pointer transition-all ease-in-out duration-150"
+            className="flex h-10 w-10 items-center justify-center rounded-md bg-app-complementary text-xl drop-shadow-3xl hover:scale-105 hover:cursor-pointer transition-all ease-in-out duration-150"
             onClick={toggleModal}
           >
             
           </div>
-          <div className="flex h-10 w-10 items-center rounded-md bg-app-complementary pl-3 text-lg drop-shadow-md hover:scale-105 hover:cursor-pointer transition-all ease-in-out duration-150">
+          <div className="flex h-10 w-10 items-center rounded-md bg-app-complementary pl-3 text-lg drop-shadow-3xl hover:scale-105 hover:cursor-pointer transition-all ease-in-out duration-150">
             
           </div>
         </div>

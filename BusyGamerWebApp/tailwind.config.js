@@ -14,7 +14,11 @@ export default {
     fontFamily: {
       sans: ["JetBrains"],
     },
-    extend: {},
+    extend: {
+      dropShadow: {
+        "3xl": "0 0px 6px rgba(0, 0, 0, .5)",
+      },
+    },
   },
   plugins: [],
 };
