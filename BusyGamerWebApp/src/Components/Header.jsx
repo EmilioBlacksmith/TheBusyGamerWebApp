@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
+import SearchBox from "./SearchBox";
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setModalIsOpen] = useState(false);
+  const [isSearchBoxOpen, setSearchBoxIsOpen] = useState(false);
 
-  const toggleModal = () => setIsOpen(!isOpen);
+  const toggleModal = () => setModalIsOpen(!isModalOpen);
+  const toggleSearch = () => setSearchBoxIsOpen(!isSearchBoxOpen);
 
   return (
     <>
@@ -27,12 +30,17 @@ export default function Header() {
           >
             
           </div>
-          <div className="flex h-10 w-10 items-center rounded-md bg-app-complementary pl-3 text-lg drop-shadow-3xl hover:scale-105 hover:cursor-pointer transition-all ease-in-out duration-150">
+          <div
+            className="flex h-10 w-10 items-center rounded-md bg-app-complementary pl-3 text-lg drop-shadow-3xl hover:scale-105 hover:cursor-pointer transition-all ease-in-out duration-150"
+            onClick={toggleSearch}
+          >
             
           </div>
         </div>
 
-        <Modal open={isOpen} onClose={toggleModal}>
+        <SearchBox open={isSearchBoxOpen} onClose={toggleSearch}></SearchBox>
+
+        <Modal open={isModalOpen} onClose={toggleModal}>
           <div className="text-xl font-bold">ABOUT.</div>
           <div>
             The Busy Gamer App, allows you to track the videogames that you want

@@ -15,7 +15,7 @@ export default function Footer() {
               >
                 Emilio (Blackmsith)
               </a>{" "}
-              || so many games, little time...
+              || so many games, so little time...
             </div>
             <div className="text-sm font-extralight text-app-grey">
               The Busy Gamer App (2023) • Powered By{" "}
