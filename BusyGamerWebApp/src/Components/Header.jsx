@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Modal from "./Modal";
-import SearchBox from "./SearchBox";
+import React, { useState } from 'react';
+import Modal from './Modal';
+import SearchBox from './SearchBox';
 
 export default function Header() {
   const [isModalOpen, setModalIsOpen] = useState(false);

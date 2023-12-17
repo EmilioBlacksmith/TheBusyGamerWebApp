@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const baseURL = "http://localhost:8080/topGames";
+const baseURL = 'http://localhost:8080/topGames';
 
 export default function Latest() {
   const [data, setData] = useState([]);
@@ -19,7 +19,7 @@ export default function Latest() {
         // Update the state with the fetched data
         setData(jsonData);
       } catch (error) {
-        console.error("Error fetching data:", error.message);
+        console.error('Error fetching data:', error.message);
       }
     };
 
@@ -55,7 +55,7 @@ export default function Latest() {
             <div
               className="bg-app-complementary w-10 h-10 fixed flex justify-center items-center text-3xl font-black rounded-full -mt-8 outline outline-2 outline-white drop-shadow-3xl cursor-pointer self-end right-0 hover:scale-110 transition-all hover:drop-shadow-3xl"
               onClick={() => {
-                console.log("add:", item.name);
+                console.log('add:', item.name);
               }}
             >
               +

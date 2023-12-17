@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function Footer() {
   return (
@@ -7,25 +7,25 @@ export default function Footer() {
         <div className="w-5/6 flex items-center justify-between p-8">
           <div className="flex flex-col gap-1">
             <div className="text-sm font-extralight text-app-grey">
-              Developed by{" "}
+              Developed by{' '}
               <a
                 href="https://emilioblacksmith.github.io/"
                 target="_blank"
                 className=" text-white hover:text-app-complementary"
               >
                 Emilio (Blackmsith)
-              </a>{" "}
+              </a>{' '}
               || so many games, so little time...
             </div>
             <div className="text-sm font-extralight text-app-grey">
-              The Busy Gamer App (2023) • Powered By{" "}
+              The Busy Gamer App (2023) • Powered By{' '}
               <a
                 href="https://howlongtobeat.com/"
                 target="_blank"
                 className="text-white hover:text-app-complementary"
               >
                 HowLongToBeat
-              </a>{" "}
+              </a>{' '}
               • v1.0 • GPL-3.0 license
             </div>
           </div>

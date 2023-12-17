@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import ReactDom from "react-dom";
+import React, { useRef, useEffect } from 'react';
+import ReactDom from 'react-dom';
 
 export default function SearchBox({ open, onClose }) {
   if (!open) return null;
@@ -27,6 +27,6 @@ export default function SearchBox({ open, onClose }) {
         </div>
       </div>
     </>,
-    document.getElementById("portal")
+    document.getElementById('portal')
   );
 }

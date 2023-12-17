@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDom from "react-dom";
+import React from 'react';
+import ReactDom from 'react-dom';
 
 export default function Modal({ open, children, onClose }) {
   if (!open) return null;
@@ -18,6 +18,6 @@ export default function Modal({ open, children, onClose }) {
         </div>
       </div>
     </>,
-    document.getElementById("portal")
+    document.getElementById('portal')
   );
 }
