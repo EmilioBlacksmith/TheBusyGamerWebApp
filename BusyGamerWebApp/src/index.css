@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'JetBrains';
-  src: url(/fonts/JetBrainsMonoNerdFont-Regular.ttf);
-  font-display: swap;
+	font-family: "JetBrains";
+	src: url(/fonts/JetBrainsMonoNerdFont-Regular.ttf);
+	font-display: swap;
 }
