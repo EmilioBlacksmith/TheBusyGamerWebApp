@@ -38,8 +38,14 @@ export default function Latest() {
 						key={item.id}
 						style={{ backgroundImage: `url(${item.imageUrl})` }}
 						className="h-80 w-64 rounded-xl bg-cover bg-no-repeat bg-center hover:backdrop-blur-3xl drop-shadow-3xl -mt-4 align-bottom mb-4"
+						onClick={() => {
+							console.log("add:", item.name);
+						}}
 					>
 						<div className="flex flex-col gap-2 justify-center items-center rounded-lg h-full w-full bg-black bg-opacity-75 opacity-0 backdrop-blur-md hover:opacity-100 outline outline-app-complementary outline-1 drop-shadow-3xl p-2 text-center transition-all ease-in-out duration-200 cursor-pointer">
+							<div className="bg-app-complementary w-10 h-10 -mt-4 absolute flex justify-center items-center text-xl font-black rounded-full top-0">
+								+
+							</div>
 							<div className="font-bold text-2xl">{item.name}</div>
 							<div className="font-semibold text-sm -mb-3">Main Story:</div>
 							<div className="font-thin text-lg">{item.gameplayMain} Hours</div>
@@ -51,14 +57,6 @@ export default function Latest() {
 							<div className="font-thin text-lg">
 								{item.gameplayCompletionist} Hours
 							</div>
-						</div>
-						<div
-							className="bg-app-complementary w-10 h-10 fixed flex justify-center items-center text-3xl font-black rounded-full -mt-8 outline outline-2 outline-white drop-shadow-3xl cursor-pointer self-end right-0 hover:scale-110 transition-all hover:drop-shadow-3xl"
-							onClick={() => {
-								console.log("add:", item.name);
-							}}
-						>
-							+
 						</div>
 					</div>
 				))}
