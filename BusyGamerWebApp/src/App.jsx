@@ -8,7 +8,6 @@ function App() {
 
 	const handleDataFromChild = (data) => {
 		setSearchedData(data);
-		console.log(data);
 	};
 
 	return (
