@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 const baseURL = "http://localhost:8080/topGames";
 

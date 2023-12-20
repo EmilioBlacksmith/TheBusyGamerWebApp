@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import SearchBox from "./SearchBox";
 
-export default function Header() {
+export default function Header({ valueSearched }) {
 	const [isModalOpen, setModalIsOpen] = useState(false);
 	const [isSearchBoxOpen, setSearchBoxIsOpen] = useState(false);
 
 	const toggleModal = () => setModalIsOpen(!isModalOpen);
 	const toggleSearch = () => setSearchBoxIsOpen(!isSearchBoxOpen);
+
+	const handleDataSearched = (data) => {
+		valueSearched(data);
+	};
 
 	return (
 		<>
@@ -41,6 +45,7 @@ export default function Header() {
 				<SearchBox
 					open={isSearchBoxOpen}
 					onClose={toggleSearch}
+					valueSearched={handleDataSearched}
 				></SearchBox>
 
 				<Modal
