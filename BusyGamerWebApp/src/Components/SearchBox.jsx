@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDom from "react-dom";
 
-export default function SearchBox({ open, onClose }) {
+export default function SearchBox({ open, onClose, valueSearched }) {
 	const [value, setValue] = useState("");
 
 	const onChange = (e) => {
@@ -9,9 +9,15 @@ export default function SearchBox({ open, onClose }) {
 	};
 
 	const onSearch = (event) => {
-		// Fetch Data from API
 		event.preventDefault();
-		console.log(value);
+
+		if (value === "") {
+			console.log("Nothing Searched");
+		} else {
+			valueSearched(value);
+			setValue("");
+			onClose();
+		}
 	};
 
 	if (!open) return null;
