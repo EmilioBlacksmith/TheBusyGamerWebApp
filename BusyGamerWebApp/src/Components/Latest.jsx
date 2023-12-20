@@ -43,12 +43,7 @@ export default function Latest() {
 						<img
 							src={item.imageUrl}
 							alt={item.name}
-							className="h-full w-full rounded-xl fixed"
-							style={{
-								width: "100%",
-								height: "100%",
-								objectFit: "cover",
-							}}
+							className="h-full w-full rounded-xl fixed object-cover"
 						/>
 						<div className="flex flex-col gap-2 justify-center items-center rounded-lg h-full w-full bg-black bg-opacity-75 opacity-0 backdrop-blur-md hover:opacity-100 outline outline-app-complementary outline-1 drop-shadow-3xl p-2 text-center transition-all ease-in-out duration-200 cursor-pointer">
 							<div className="bg-app-complementary w-10 h-10 -mt-4 absolute flex justify-center items-center text-xl font-black rounded-full top-0">
