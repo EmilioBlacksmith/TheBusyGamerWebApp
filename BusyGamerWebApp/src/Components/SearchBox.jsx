@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDom from "react-dom";
 
 export default function SearchBox({ open, onClose, valueSearched }) {
 	const [value, setValue] = useState("");
+	const searchBarRef = useRef(null);
+
+	useEffect(() => {
+		if (open && searchBarRef.current) {
+			searchBarRef.current.focus();
+		}
+	}, [open]);
 
 	const onChange = (e) => {
 		setValue(e.target.value);
@@ -39,6 +46,7 @@ export default function SearchBox({ open, onClose, valueSearched }) {
 							placeholder="WHAT ARE WE PLAYING NEXT?"
 							value={value}
 							onChange={onChange}
+							ref={searchBarRef}
 						/>
 						<button
 							className="text-app-grey text-2xl relative float-right right-6 -top-11 cursor-pointer"
