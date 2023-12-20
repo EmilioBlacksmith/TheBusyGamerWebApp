@@ -25,7 +25,7 @@ export default function SearchBox({ open, onClose, valueSearched }) {
 	return ReactDom.createPortal(
 		<>
 			<div
-				className="fixed top-0 right-0 left-0 bottom-0 w-screen h-screen bg-opacity-70 backdrop-blur-md bg-black z-10 flex justify-center pt-32"
+				className="fixed top-0 right-0 left-0 bottom-0 w-screen h-screen bg-opacity-70 backdrop-blur-md bg-black z-10 flex justify-center pt-32 animate-fade-in"
 				onClick={onClose}
 			>
 				<div

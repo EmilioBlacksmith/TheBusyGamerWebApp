@@ -19,6 +19,25 @@ export default {
 			dropShadow: {
 				"3xl": "0 0px 6px rgba(0, 0, 0, .5)",
 			},
+			keyframes: {
+				leftIn: {
+					"0%": { transform: "translateX(-100%)" },
+					"100%": { transform: "translateX(0)" },
+				},
+				fadeIn: {
+					"0%": { opacity: 0 },
+					"100%": { opacity: 1 },
+				},
+				fadeOut: {
+					"0%": { opacity: 1 },
+					"100%": { opacity: 0 },
+				},
+			},
+			animation: {
+				"left-in": "leftIn .25s ease-in-out forwards",
+				"fade-in": "fadeIn .2s ease forwards",
+				"fade-out": "fadeIn .2s ease forwards",
+			},
 		},
 	},
 	plugins: [],

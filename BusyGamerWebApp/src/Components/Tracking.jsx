@@ -5,7 +5,6 @@ export default function Tracking() {
 
 	const toggleTrackingSection = () => {
 		setIsActive(!isActive);
-		console.log(isActive);
 	};
 
 	return (
@@ -21,11 +20,11 @@ export default function Tracking() {
 				</div>
 			) : (
 				<div
-					className="fixed h-full w-full z-10 bg-black backdrop-blur-md bg-opacity-50"
+					className="fixed h-full w-full z-10 bg-black backdrop-blur-md bg-opacity-50 animate-fade-in"
 					onClick={toggleTrackingSection}
 				>
 					<div
-						className="fixed left-0 h-full w-1/2 p-2 bg-app-secondary z-10 drop-shadow-3xl"
+						className="fixed left-0 h-full w-1/2 p-2 bg-app-secondary z-10 drop-shadow-3xl animate-left-in"
 						onClick={(e) => e.stopPropagation()}
 					>
 						<div
@@ -33,6 +32,10 @@ export default function Tracking() {
 							onClick={toggleTrackingSection}
 						>
 							󰞓
+						</div>
+						<div className="text-3xl font-extrabold p-2">
+							THIS WILL TAKE A WHILE...
+							<div className="bg-app-complementary w-4/6 h-2"></div>
 						</div>
 					</div>
 				</div>
