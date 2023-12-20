@@ -44,6 +44,15 @@ export default function Searched({ searchValue }) {
 		fetchData();
 	}, [searchValue]);
 
+	const formatHours = (hours) => {
+		if (hours % 1 === 0.5) {
+			const integerPart = Math.floor(hours);
+			return `${integerPart}½`;
+		} else {
+			return hours;
+		}
+	};
+
 	return (
 		<div className="flex w-5/6 flex-col gap-8 p-4 mb-6 mt-6">
 			<div className="text-3xl font-extrabold p-2">
@@ -78,17 +87,17 @@ export default function Searched({ searchValue }) {
 								<div className="font-bold text-2xl">{item.name}</div>
 								<div className="font-semibold text-sm -mb-3">Main Story:</div>
 								<div className="font-thin text-lg">
-									{item.gameplayMain} Hours
+									{formatHours(item.gameplayMain)} Hours
 								</div>
 								<div className="font-semibold text-sm -mb-3">Main + Extra:</div>
 								<div className="font-thin text-lg">
-									{item.gameplayMainExtra} Hours
+									{formatHours(item.gameplayMainExtra)} Hours
 								</div>
 								<div className="font-semibold text-sm -mb-3">
 									Completionist:
 								</div>
 								<div className="font-thin text-lg">
-									{item.gameplayCompletionist} Hours
+									{formatHours(item.gameplayCompletionist)} Hours
 								</div>
 							</div>
 						</div>
