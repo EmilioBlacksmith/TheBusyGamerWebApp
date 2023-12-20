@@ -26,8 +26,12 @@ export default function Latest() {
 	}, []);
 
 	const formatHours = (hours) => {
-		if (hours % 1 === 0.5) {
-			const integerPart = Math.floor(hours);
+		const integerPart = Math.floor(hours);
+		const decimalPart = hours - integerPart;
+
+		if (decimalPart === 0.25 || decimalPart === 0.75) {
+			return `${integerPart}${decimalPart * 10}`;
+		} else if (decimalPart === 0.5) {
 			return `${integerPart}½`;
 		} else {
 			return hours;

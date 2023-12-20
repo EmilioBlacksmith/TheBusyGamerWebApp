@@ -45,7 +45,7 @@ export default function Searched({ searchValue }) {
 	}, [searchValue]);
 
 	const formatHours = (hours) => {
-		if (hours % 1 === 0.5) {
+		if (hours % 1 === 0.5 || hours % 1 === 0.75 || hours % 1 === 0.25) {
 			const integerPart = Math.floor(hours);
 			return `${integerPart}½`;
 		} else {
