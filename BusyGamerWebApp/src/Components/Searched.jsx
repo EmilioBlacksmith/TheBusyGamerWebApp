@@ -35,7 +35,7 @@ export default function Searched({ searchValue }) {
 				}
 			} catch (error) {
 				console.error("Error fetching data:", error.message);
-				setError("An error occurred while fetching data");
+				setError("Couldn't find anything from that... 🥺");
 			} finally {
 				setIsLoading(false);
 			}
@@ -51,9 +51,11 @@ export default function Searched({ searchValue }) {
 				<div className="bg-app-complementary w-1/3 h-2"></div>
 			</div>
 			{isLoading ? (
-				<div className="text-app-complementary">Searching...</div>
+				<div className="text-app-grey flex align-middle justify-center font-black text-4xl">
+					Searching... 🧐
+				</div>
 			) : error ? (
-				<div className="text-red">{error}</div>
+				<div className="text-app-grey font-black text-2xl">{error}</div>
 			) : (
 				<div className="flex flex-wrap justify-between gap-x-8 gap-y-16 mt-4">
 					{data.map((item) => (
