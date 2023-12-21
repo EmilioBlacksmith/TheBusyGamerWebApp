@@ -4,6 +4,9 @@ import Header from "./Components/Header";
 import ContentSection from "./Components/ContentSection";
 import Tracking from "./Components/Tracking";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
 function App() {
 	const [searchedData, setSearchedData] = useState("");
 
@@ -17,6 +20,12 @@ function App() {
 			<ContentSection searchedData={searchedData} />
 			<Tracking />
 			<Footer />
+			<ToastContainer
+				autoClose={2000}
+				limit={6}
+				position="bottom-right"
+				theme="dark"
+			/>
 		</div>
 	);
 }
