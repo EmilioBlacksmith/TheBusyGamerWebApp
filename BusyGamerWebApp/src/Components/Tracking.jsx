@@ -1,12 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-export default function Tracking() {
+export default function Tracking({ newItemToTrack }) {
 	const [isActive, setIsActive] = useState(true);
+	const [trackingList, setTrackingList] = useState([]);
 
 	const toggleTrackingSection = () => {
 		setIsActive(!isActive);
 	};
+
+	const addNewItemToList = (item) => {
+		let currentList = trackingList;
+		currentList.push(item);
+		setTrackingList(currentList);
+		console.log(trackingList);
+	};
+
+	const containsItem = (item) => {
+		let currentList = trackingList;
+		if (currentList.includes(item)) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	useEffect(() => {
+		if (Object.keys(newItemToTrack).length === 0) {
+			return;
+		}
+
+		if (containsItem(newItemToTrack)) {
+			toast.error(newItemToTrack.name + " is already being tracked... 🥺");
+		} else {
+			toast.success("Tracking " + newItemToTrack.name);
+			addNewItemToList(newItemToTrack);
+		}
+	}, [newItemToTrack]);
 
 	return (
 		<>

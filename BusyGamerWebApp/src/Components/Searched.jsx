@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const searchURL = "http://localhost:8080/search?q=";
 
-export default function Searched({ searchValue }) {
+export default function Searched({ searchValue, newItemToAdd }) {
 	const [data, setData] = useState([]);
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -53,6 +53,10 @@ export default function Searched({ searchValue }) {
 		}
 	};
 
+	const sendItemToTrack = (item) => {
+		newItemToAdd(item);
+	};
+
 	return (
 		<div className="flex w-5/6 flex-col gap-8 p-4 mb-6 mt-6">
 			<div className="text-3xl font-extrabold p-2">
@@ -72,7 +76,7 @@ export default function Searched({ searchValue }) {
 							key={item.id}
 							className="h-80 w-64 rounded-xl hover:backdrop-blur-3xl drop-shadow-3xl -mt-2 align-bottom mb-4"
 							onClick={() => {
-								console.log("add:", item.id);
+								sendItemToTrack(item);
 							}}
 						>
 							<img

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const baseURL = "http://localhost:8080/topGames";
 
-export default function Latest() {
+export default function Latest({ newItemToAdd }) {
 	const [data, setData] = useState([]);
 
 	React.useEffect(() => {
@@ -38,19 +38,23 @@ export default function Latest() {
 		}
 	};
 
+	const sendItemToTrack = (item) => {
+		newItemToAdd(item);
+	};
+
 	return (
 		<div className="flex w-5/6 flex-col gap-8 p-4 mb-6 mt-6">
 			<div className="text-3xl font-extrabold p-2">
 				POPULAR RIGHT NOW
 				<div className="bg-app-complementary w-1/3 h-2"></div>
 			</div>
-			<div className="flex flex-wrap justify-between gap-x-8 gap-y-16 mt-4">
+			<div className="flex flex-wrap justify-between gap-x-8 gap-y-16 mt-4 ">
 				{data.map((item) => (
 					<div
 						key={item.id}
 						className="h-80 w-64 rounded-xl hover:backdrop-blur-3xl drop-shadow-3xl -mt-2 align-bottom mb-4"
 						onClick={() => {
-							console.log("add:", item.id);
+							sendItemToTrack(item);
 						}}
 					>
 						<img

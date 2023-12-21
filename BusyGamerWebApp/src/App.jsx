@@ -9,20 +9,27 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
 	const [searchedData, setSearchedData] = useState("");
+	const [newItemToAdd, setNewItemToAdd] = useState([]);
 
 	const handleDataFromChild = (data) => {
 		setSearchedData(data);
 	};
 
+	const handleNewTracking = (item) => {
+		setNewItemToAdd(item);
+	};
+
 	return (
 		<div className="flex flex-col min-h-screen min-w-full items-center bg-app-main text-white font-sans">
 			<Header valueSearched={handleDataFromChild} />
-			<ContentSection searchedData={searchedData} />
-			<Tracking />
+			<ContentSection
+				searchedData={searchedData}
+				newItemToAdd={handleNewTracking}
+			/>
+			<Tracking newItemToTrack={newItemToAdd} />
 			<Footer />
 			<ToastContainer
-				autoClose={2000}
-				limit={6}
+				autoClose={1500}
 				position="bottom-right"
 				theme="dark"
 			/>
