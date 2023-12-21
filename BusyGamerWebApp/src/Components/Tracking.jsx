@@ -25,7 +25,21 @@ export default function Tracking({ newItemToTrack }) {
 	};
 
 	const deleteEntry = (item) => {
-		let currentList = trackingList;
+		const updatedList = trackingList.filter((x) => x !== item);
+		setTrackingList(updatedList);
+	};
+
+	const formatHours = (hours) => {
+		const integerPart = Math.floor(hours);
+		const decimalPart = hours - integerPart;
+
+		if (decimalPart === 0.25 || decimalPart === 0.75) {
+			return `${integerPart}${decimalPart * 10}`;
+		} else if (decimalPart === 0.5) {
+			return `${integerPart}½`;
+		} else {
+			return hours;
+		}
 	};
 
 	useEffect(() => {
@@ -67,10 +81,10 @@ export default function Tracking({ newItemToTrack }) {
 						>
 							󰞓
 						</div>
-						<div className=" w-full h-full p-4 flex flex-col gap-4">
+						<div className=" w-full h-full p-4 flex flex-col gap-4 pl-8 pr-8">
 							<div className="text-3xl font-extrabold cursor-default">
 								THIS WILL TAKE A WHILE...
-								<div className="bg-app-complementary w-4/6 h-2"></div>
+								<div className="bg-app-complementary w-1/2 h-2"></div>
 							</div>
 							<div className="w-full h-12 flex flex-row cursor-default">
 								<div className="h-full w-2/6 flex items-center justify-center bg-app-secondary-dark rounded-lg drop-shadow-3xl text-base font-bold">
@@ -88,35 +102,84 @@ export default function Tracking({ newItemToTrack }) {
 									</div>
 								</div>
 							</div>
-							<div className="flex flex-col gap-4">
-								{trackingList.length !== 0 ? trackingList.map((item) => (
-									<div
-										className="w-full h-10 flex flex-row cursor-default bg-app-secondary-dark rounded-lg drop-shadow-sm"
-										key={item.id}
-									>
-										<div className="h-full w-2/6 flex items-center pl-2 font-bold">
-											<p className="truncate">{item.name}</p>
-										</div>
-										<div className="flex flex-row h-full w-4/6 justify-center gap-6 text-center text-app-grey font-semibold text-lg truncate">
-											<div className="flex w-40 items-center justify-center">
-												{item.gameplayMain} Hours
+							<div className="w-full h-80 overflow-auto">
+								{trackingList.length !== 0 ? (
+									trackingList.map((item) => (
+										<div
+											className="mb-3 w-full h-12 flex flex-row cursor-default bg-app-secondary-dark rounded-lg drop-shadow-sm"
+											key={item.id}
+										>
+											<div className="h-full w-2/6 flex items-center pl-2 font-bold">
+												<p className="truncate">{item.name}</p>
 											</div>
-											<div className="flex w-40 items-center justify-center">
-												{item.gameplayMainExtra} Hours
+											<div className="flex flex-row h-full w-4/6 justify-center gap-6 text-center text-app-grey font-semibold text-lg truncate">
+												<div className="flex w-40 items-center justify-center">
+													{formatHours(item.gameplayMain)} Hours
+												</div>
+												<div className="flex w-40 items-center justify-center">
+													{formatHours(item.gameplayMainExtra)} Hours
+												</div>
+												<div className="flex w-40 items-center justify-center">
+													{formatHours(item.gameplayCompletionist)} Hours
+												</div>
 											</div>
-											<div className="flex w-40 items-center justify-center">
-												{item.gameplayCompletionist} Hours
+											<div
+												className="fixed right-0 top-0 rounded-lg w-10 h-full bg-red pl-2.5 text-2xl drop-shadow-3xl flex items-center cursor-pointer"
+												onClick={() => {
+													deleteEntry(item);
+												}}
+											>
+												
 											</div>
 										</div>
-										<div className="fixed right-0 top-0 rounded-lg w-10 h-full bg-red pl-2.5 text-2xl drop-shadow-3xl flex items-center cursor-pointer">
-											
-										</div>
-									</div>
-								)) : 
-								(
-									<div>Nothing to see here...</div>
+									))
+								) : (
+									<p className="text-app-grey">
+										Nothing is getting tracked... yet 😏
+									</p>
 								)}
 							</div>
+							<div>
+								<div className="text-3xl font-extrabold cursor-default">
+									How Long Can You Play tho?
+									<div className="bg-app-complementary w-1/2 h-2"></div>
+								</div>
+								<div className="w-full h-32 flex justify-between">
+									<div className="flex flex-col items-center w-1/6 justify-center">
+										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
+											SHORTEST GAME
+										</div>
+										<div className="flex w-full h-1/3 items-center justify-center">
+											game game
+										</div>
+									</div>
+									<div className="flex flex-col items-center w-1/6 justify-center">
+										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
+											LONGEST GAME
+										</div>
+										<div className="flex w-full h-1/3 items-center justify-center">
+											game game
+										</div>
+									</div>
+									<div className="flex flex-col items-center w-1/6 justify-center">
+										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
+											HOW MANY GAMES
+										</div>
+										<div className="flex w-full h-1/3 items-center justify-center">
+											{trackingList.length} GAMES
+										</div>
+									</div>
+								</div>
+								<div>add form here</div>
+							</div>
+							<div className="text-3xl font-extrabold cursor-default">
+								Based in your time (quit your job)
+								<div className="bg-app-complementary w-1/2 h-2"></div>
+							</div>
+							<p>
+								Based in your time, this would be the overview of how long it
+								will take you to finish those sweet sweet games of yours...
+							</p>
 						</div>
 					</div>
 				</div>
