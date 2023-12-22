@@ -6,6 +6,8 @@ export default function Tracking({ newItemToTrack }) {
 	const [trackingList, setTrackingList] = useState([]);
 	const [longestGame, setLongestGame] = useState(0);
 	const [shortestGame, setShortestGame] = useState(0);
+	const [timeGameplayMain, setTimeGameplayMain] = useState(0);
+	const [timeGameplayMainExtras, setTimeGameplayMainExtras] = useState(0);
 
 	const toggleTrackingSection = () => {
 		setIsActive(!isActive);
@@ -54,6 +56,30 @@ export default function Tracking({ newItemToTrack }) {
 		}
 	};
 
+	const getTimeGameplayMain = () => {
+		if (trackingList.length === 0) {
+			return "NOTHING IS GETTING TRACKED... YET 🙊";
+		} else {
+			const hourList = trackingList.map((item) => item.gameplayMain);
+			return (
+				formatHours(hourList.reduce((partialSum, a) => partialSum + a, 0)) +
+				" Hours"
+			);
+		}
+	};
+
+	const getTimeGameplayMainExtras = () => {
+		if (trackingList.length === 0) {
+			return "NOTHING IS GETTING TRACKED... YET 🙊";
+		} else {
+			const hourList = trackingList.map((item) => item.gameplayMainExtra);
+			return (
+				formatHours(hourList.reduce((partialSum, a) => partialSum + a, 0)) +
+				" Hours"
+			);
+		}
+	};
+
 	const formatHours = (hours) => {
 		const integerPart = Math.floor(hours);
 		const decimalPart = hours - integerPart;
@@ -83,6 +109,8 @@ export default function Tracking({ newItemToTrack }) {
 	useEffect(() => {
 		setLongestGame(getLongestGame());
 		setShortestGame(getShortestGame());
+		setTimeGameplayMain(getTimeGameplayMain());
+		setTimeGameplayMainExtras(getTimeGameplayMainExtras());
 	}, [trackingList]);
 
 	return (
@@ -170,11 +198,7 @@ export default function Tracking({ newItemToTrack }) {
 								)}
 							</div>
 							<div>
-								<div className="text-3xl font-extrabold cursor-default">
-									How Long Can You Play tho?
-									<div className="bg-app-complementary w-1/2 h-2"></div>
-								</div>
-								<div className="w-full h-32 flex justify-between mt-6">
+								<div className="w-full h-40 flex justify-between">
 									<div className="flex flex-col items-center w-1/6 justify-center">
 										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
 											SHORTEST GAME
@@ -192,6 +216,22 @@ export default function Tracking({ newItemToTrack }) {
 										</div>
 									</div>
 									<div className="flex flex-col items-center w-1/6 justify-center">
+										<div className="flex w-full h-1/3 items-center justify-center text-center bg-app-complementary rounded-lg drop-shadow-3xl text-sm font-bold">
+											MAIN STORY HOURS
+										</div>
+										<div className="flex w-full h-2/3 items-center justify-center text-center">
+											{timeGameplayMain}
+										</div>
+									</div>
+									<div className="flex flex-col items-center w-1/6 justify-center">
+										<div className="flex w-full h-1/3 items-center justify-center text-center bg-app-complementary rounded-lg drop-shadow-3xl text-sm font-bold">
+											STORY + EXTRAS HOURS
+										</div>
+										<div className="flex w-full h-2/3 items-center justify-center text-center">
+											{timeGameplayMainExtras}
+										</div>
+									</div>
+									<div className="flex flex-col items-center w-1/6 justify-center">
 										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
 											HOW MANY GAMES
 										</div>
@@ -199,6 +239,10 @@ export default function Tracking({ newItemToTrack }) {
 											{trackingList.length}
 										</div>
 									</div>
+								</div>
+								<div className="text-3xl font-extrabold cursor-default">
+									How Long Can You Play tho?
+									<div className="bg-app-complementary w-1/2 h-2"></div>
 								</div>
 								<div>add form here</div>
 							</div>
