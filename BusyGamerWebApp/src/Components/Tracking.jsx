@@ -4,15 +4,15 @@ import { toast } from "react-toastify";
 export default function Tracking({ newItemToTrack }) {
 	const [isActive, setIsActive] = useState(true);
 	const [trackingList, setTrackingList] = useState([]);
+	const [longestGame, setLongestGame] = useState(0);
+	const [shortestGame, setShortestGame] = useState(0);
 
 	const toggleTrackingSection = () => {
 		setIsActive(!isActive);
 	};
 
 	const addNewItemToList = (item) => {
-		let currentList = trackingList;
-		currentList.push(item);
-		setTrackingList(currentList);
+		setTrackingList((prevList) => [...prevList, item]);
 	};
 
 	const containsItem = (item) => {
@@ -25,8 +25,33 @@ export default function Tracking({ newItemToTrack }) {
 	};
 
 	const deleteEntry = (item) => {
-		const updatedList = trackingList.filter((x) => x !== item);
-		setTrackingList(updatedList);
+		setTrackingList((prevList) => prevList.filter((x) => x !== item));
+	};
+
+	const getLongestGame = () => {
+		if (trackingList.length === 0) {
+			return "NOTHING IS GETTING TRACKED... YET 🙊";
+		} else {
+			const hourList = trackingList.map((item) => item.gameplayMainExtra);
+			const max = Math.max(...hourList);
+			const longestGame = trackingList.find(
+				(item) => item.gameplayMainExtra === max
+			);
+			return longestGame ? longestGame.name : "";
+		}
+	};
+
+	const getShortestGame = () => {
+		if (trackingList.length === 0) {
+			return "NOTHING IS GETTING TRACKED... YET 🙊";
+		} else {
+			const hourList = trackingList.map((item) => item.gameplayMain);
+			const min = Math.min(...hourList);
+			const shortestGame = trackingList.find(
+				(item) => item.gameplayMain === min
+			);
+			return shortestGame ? shortestGame.name : "";
+		}
 	};
 
 	const formatHours = (hours) => {
@@ -54,6 +79,11 @@ export default function Tracking({ newItemToTrack }) {
 			addNewItemToList(newItemToTrack);
 		}
 	}, [newItemToTrack]);
+
+	useEffect(() => {
+		setLongestGame(getLongestGame());
+		setShortestGame(getShortestGame());
+	}, [trackingList]);
 
 	return (
 		<>
@@ -144,29 +174,29 @@ export default function Tracking({ newItemToTrack }) {
 									How Long Can You Play tho?
 									<div className="bg-app-complementary w-1/2 h-2"></div>
 								</div>
-								<div className="w-full h-32 flex justify-between">
+								<div className="w-full h-32 flex justify-between mt-6">
 									<div className="flex flex-col items-center w-1/6 justify-center">
 										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
 											SHORTEST GAME
 										</div>
-										<div className="flex w-full h-1/3 items-center justify-center">
-											game game
+										<div className="flex w-full h-2/3 items-center justify-center text-center">
+											{shortestGame}
 										</div>
 									</div>
 									<div className="flex flex-col items-center w-1/6 justify-center">
 										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
 											LONGEST GAME
 										</div>
-										<div className="flex w-full h-1/3 items-center justify-center">
-											game game
+										<div className="flex w-full h-2/3 items-center justify-center text-center">
+											{longestGame}
 										</div>
 									</div>
 									<div className="flex flex-col items-center w-1/6 justify-center">
 										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
 											HOW MANY GAMES
 										</div>
-										<div className="flex w-full h-1/3 items-center justify-center">
-											{trackingList.length} GAMES
+										<div className="flex w-full h-2/3 items-center justify-center text-center">
+											{trackingList.length}
 										</div>
 									</div>
 								</div>
