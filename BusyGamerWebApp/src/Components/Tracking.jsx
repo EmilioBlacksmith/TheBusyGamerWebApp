@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 export default function Tracking({ newItemToTrack }) {
+	const [trackingList, setTrackingList] = useState(() => {
+		const localData = localStorage.getItem("trackingList");
+		return localData ? JSON.parse(localData) : [];
+	});
 	const [isActive, setIsActive] = useState(true);
-	const [trackingList, setTrackingList] = useState([]);
 	const [longestGame, setLongestGame] = useState(0);
 	const [shortestGame, setShortestGame] = useState(0);
 	const [timeGameplayMain, setTimeGameplayMain] = useState(0);
@@ -111,6 +114,7 @@ export default function Tracking({ newItemToTrack }) {
 		setShortestGame(getShortestGame());
 		setTimeGameplayMain(getTimeGameplayMain());
 		setTimeGameplayMainExtras(getTimeGameplayMainExtras());
+		localStorage.setItem("trackingList", JSON.stringify(trackingList));
 	}, [trackingList]);
 
 	return (
