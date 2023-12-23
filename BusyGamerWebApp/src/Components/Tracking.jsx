@@ -6,7 +6,6 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 		const localData = localStorage.getItem("trackingList");
 		return localData ? JSON.parse(localData) : [];
 	});
-
 	const [isActive, setIsActive] = useState(true);
 	const [longestGame, setLongestGame] = useState(0);
 	const [shortestGame, setShortestGame] = useState(0);
@@ -20,13 +19,13 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 	const addNewItemToList = (item) => {
 		setTrackingList((prevList) => [...prevList, item]);
 	};
+	
+	const deleteEntry = (item) => {
+		setTrackingList((prevList) => prevList.filter((x) => x !== item));
+	};
 
 	const containsItem = (item) => {
 		return trackingList.some((existingItem) => existingItem.id === item.id);
-	};
-
-	const deleteEntry = (item) => {
-		setTrackingList((prevList) => prevList.filter((x) => x !== item));
 	};
 
 	const getLongestGame = () => {
