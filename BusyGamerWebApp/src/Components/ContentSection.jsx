@@ -2,12 +2,21 @@ import React, { useEffect, useState } from "react";
 import Latest from "./Latest";
 import Searched from "./Searched";
 
-export default function ContentSection({ searchedData, newItemToAdd }) {
+export default function ContentSection({
+	searchedData,
+	newItemToAdd,
+	globalGameList,
+}) {
 	const [currentSearch, setCurrentSearch] = useState("");
+	const [currentGlobalGameList, setGlobalGameList] = useState([]);
 
 	useEffect(() => {
 		setCurrentSearch(searchedData);
 	}, [searchedData]);
+
+	useEffect(() => {
+		setGlobalGameList(globalGameList);
+	}, [globalGameList]);
 
 	const handleNewTracking = (item) => {
 		newItemToAdd(item);
@@ -16,11 +25,15 @@ export default function ContentSection({ searchedData, newItemToAdd }) {
 	return (
 		<>
 			{searchedData === "" ? (
-				<Latest newItemToAdd={handleNewTracking} />
+				<Latest
+					newItemToAdd={handleNewTracking}
+					globalGameList={currentGlobalGameList}
+				/>
 			) : (
 				<Searched
 					searchValue={currentSearch}
 					newItemToAdd={handleNewTracking}
+					globalGameList={currentGlobalGameList}
 				/>
 			)}
 		</>

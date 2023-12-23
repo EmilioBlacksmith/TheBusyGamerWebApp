@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-export default function Tracking({ newItemToTrack }) {
+export default function Tracking({ newItemToTrack, listOfGames }) {
 	const [trackingList, setTrackingList] = useState(() => {
 		const localData = localStorage.getItem("trackingList");
 		return localData ? JSON.parse(localData) : [];
 	});
+
 	const [isActive, setIsActive] = useState(true);
 	const [longestGame, setLongestGame] = useState(0);
 	const [shortestGame, setShortestGame] = useState(0);
@@ -21,12 +22,7 @@ export default function Tracking({ newItemToTrack }) {
 	};
 
 	const containsItem = (item) => {
-		let currentList = trackingList;
-		if (currentList.includes(item)) {
-			return true;
-		} else {
-			return false;
-		}
+		return trackingList.some((existingItem) => existingItem.id === item.id);
 	};
 
 	const deleteEntry = (item) => {

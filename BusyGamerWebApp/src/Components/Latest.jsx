@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const baseURL = "http://localhost:8080/topGames";
 
-export default function Latest({ newItemToAdd }) {
+export default function Latest({ newItemToAdd, globalGameList }) {
 	const [data, setData] = useState([]);
+	const [currentGlobalGameList, setGlobalGameList] = useState([]);
 
 	React.useEffect(() => {
 		const fetchData = async () => {
@@ -25,6 +26,14 @@ export default function Latest({ newItemToAdd }) {
 		fetchData();
 	}, []);
 
+	useEffect(() => {
+		setGlobalGameList(globalGameList);
+	}, [globalGameList]);
+
+	useEffect(() => {
+		setGlobalGameList(globalGameList);
+	}, []);
+
 	const formatHours = (hours) => {
 		const integerPart = Math.floor(hours);
 		const decimalPart = hours - integerPart;
@@ -42,6 +51,14 @@ export default function Latest({ newItemToAdd }) {
 		newItemToAdd(item);
 	};
 
+	const containsItem = (item) => {
+		if (currentGlobalGameList.includes(item)) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	return (
 		<div className="flex w-5/6 flex-col gap-8 p-4 mb-6 mt-6">
 			<div className="text-3xl font-extrabold p-2">
@@ -57,6 +74,13 @@ export default function Latest({ newItemToAdd }) {
 							sendItemToTrack(item);
 						}}
 					>
+						{containsItem(item) ? (
+							<div className="fixed z-10 flex justify-center text-4xl rounded-lg h-full w-full bg-black bg-opacity-50 pointer-events-none">
+								Tracked...
+							</div>
+						) : (
+							<></>
+						)}
 						<img
 							src={item.imageUrl}
 							alt={item.name}

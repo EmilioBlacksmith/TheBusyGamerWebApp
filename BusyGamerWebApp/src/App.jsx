@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 function App() {
 	const [searchedData, setSearchedData] = useState("");
 	const [newItemToAdd, setNewItemToAdd] = useState([]);
+	const [gameListGlobal, setGameListGlobal] = useState([]);
 
 	const handleDataFromChild = (data) => {
 		setSearchedData(data);
@@ -19,14 +20,22 @@ function App() {
 		setNewItemToAdd(item);
 	};
 
+	const handleGameListUpdate = (gameList) => {
+		setGameListGlobal(gameList);
+	};
+
 	return (
 		<div className="flex flex-col min-h-screen min-w-full items-center bg-app-main text-white font-sans">
 			<Header valueSearched={handleDataFromChild} />
 			<ContentSection
 				searchedData={searchedData}
 				newItemToAdd={handleNewTracking}
+				globalGameList={gameListGlobal}
 			/>
-			<Tracking newItemToTrack={newItemToAdd} />
+			<Tracking
+				newItemToTrack={newItemToAdd}
+				listOfGames={handleGameListUpdate}
+			/>
 			<Footer />
 			<ToastContainer
 				autoClose={1500}
