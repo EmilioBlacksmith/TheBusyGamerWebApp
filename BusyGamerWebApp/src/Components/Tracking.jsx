@@ -111,6 +111,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 		setTimeGameplayMain(getTimeGameplayMain());
 		setTimeGameplayMainExtras(getTimeGameplayMainExtras());
 		localStorage.setItem("trackingList", JSON.stringify(trackingList));
+		listOfGames(trackingList);
 	}, [trackingList]);
 
 	return (

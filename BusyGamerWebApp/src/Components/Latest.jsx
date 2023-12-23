@@ -30,10 +30,6 @@ export default function Latest({ newItemToAdd, globalGameList }) {
 		setGlobalGameList(globalGameList);
 	}, [globalGameList]);
 
-	useEffect(() => {
-		setGlobalGameList(globalGameList);
-	}, []);
-
 	const formatHours = (hours) => {
 		const integerPart = Math.floor(hours);
 		const decimalPart = hours - integerPart;
@@ -52,11 +48,9 @@ export default function Latest({ newItemToAdd, globalGameList }) {
 	};
 
 	const containsItem = (item) => {
-		if (currentGlobalGameList.includes(item)) {
-			return true;
-		} else {
-			return false;
-		}
+		return currentGlobalGameList.some(
+			(existingItem) => existingItem.id === item.id
+		);
 	};
 
 	return (
@@ -75,8 +69,8 @@ export default function Latest({ newItemToAdd, globalGameList }) {
 						}}
 					>
 						{containsItem(item) ? (
-							<div className="fixed z-10 flex justify-center text-4xl rounded-lg h-full w-full bg-black bg-opacity-50 pointer-events-none">
-								Tracked...
+							<div className="fixed z-10 flex items-center justify-center text-2xl text-center font-black shadow-xl rounded-lg h-full w-full bg-black bg-opacity-75 pointer-events-none">
+								TRACKED
 							</div>
 						) : (
 							<></>
@@ -87,9 +81,13 @@ export default function Latest({ newItemToAdd, globalGameList }) {
 							className="h-full w-full rounded-xl fixed object-cover"
 						/>
 						<div className="flex flex-col gap-2 justify-center items-center rounded-lg h-full w-full bg-black bg-opacity-75 opacity-0 backdrop-blur-md hover:opacity-100 outline outline-app-complementary outline-1 drop-shadow-3xl p-2 text-center transition-all ease-in-out duration-200 cursor-pointer">
-							<div className="bg-app-complementary w-10 h-10 -mt-4 absolute flex justify-center items-center text-xl font-black rounded-full top-0">
-								+
-							</div>
+							{!containsItem(item) ? (
+								<div className="bg-app-complementary w-10 h-10 -mt-4 absolute flex justify-center items-center text-xl font-black rounded-full top-0">
+									+
+								</div>
+							) : (
+								<></>
+							)}
 							<div className="font-bold text-2xl">{item.name}</div>
 							<div className="font-semibold text-sm -mb-3">Main Story:</div>
 							<div className="font-thin text-lg">
