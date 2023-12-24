@@ -19,7 +19,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 	const addNewItemToList = (item) => {
 		setTrackingList((prevList) => [...prevList, item]);
 	};
-	
+
 	const deleteEntry = (item) => {
 		setTrackingList((prevList) => prevList.filter((x) => x !== item));
 	};
@@ -160,7 +160,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 									</div>
 								</div>
 							</div>
-							<div className="w-full h-80 overflow-auto">
+							<div className="w-full h-64 overflow-auto">
 								{trackingList.length !== 0 ? (
 									trackingList.map((item) => (
 										<div
@@ -198,7 +198,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 								)}
 							</div>
 							<div>
-								<div className="w-full h-40 flex justify-between">
+								<div className="w-full h-36 flex justify-between">
 									<div className="flex flex-col items-center w-1/6 justify-center">
 										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
 											SHORTEST GAME
@@ -244,7 +244,103 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 									How Long Can You Play tho?
 									<div className="bg-app-complementary w-1/2 h-2"></div>
 								</div>
-								<div>add form here</div>
+								<form>
+									<div className="flex w-full h-12 flex-row justify-between mt-4">
+										<div className="w-1/2 h-full flex items-center justify-center rounded-md bg-app-secondary-dark drop-shadow-3xl">
+											<label htmlFor="AmountHours">
+												How many hours can you play?
+											</label>
+										</div>
+										<div className="flex w-1/2 h-full items-center justify-around">
+											<input
+												className="w-1/3 h-full bg-app-grey placeholder:text-app-main rounded-md text-center drop-shadow-3xl"
+												type="number"
+												id="AmountHours"
+												placeholder="00"
+											/>
+											<div className="bg-app-grey w-1/2 h-full rounded-md flex drop-shadow-3xl">
+												<input
+													type="radio"
+													id="daily"
+													name="typeAmount"
+													value="daily"
+													className="w-0 h-0 invisible"
+													defaultChecked
+												/>
+												<label
+													htmlFor="daily"
+													className="cursor-pointer w-1/2 h-full rounded-md flex items-center justify-center -ml-1 hover:scale-105 hover:drop-shadow-3xl hover:outline hover:outline-1 hover:outline-app-secondary"
+												>
+													DAILY
+												</label>
+												<input
+													type="radio"
+													id="weekly"
+													name="typeAmount"
+													className="w-0 h-0 invisible"
+													value="weekly"
+												/>
+												<label
+													htmlFor="weekly"
+													className="cursor-pointer w-1/2 h-full rounded-md flex items-center justify-center hover:scale-105 hover:drop-shadow-3xl hover:outline hover:outline-1 hover:outline-app-secondary"
+												>
+													WEEKLY
+												</label>
+											</div>
+										</div>
+									</div>
+									<div className="flex w-full h-12 flex-row justify-between mt-4">
+										<div className="w-1/2 h-full flex items-center justify-center rounded-md bg-app-secondary-dark drop-shadow-3xl">
+											<label htmlFor="AmountHours">
+												What are you focused on?
+											</label>
+										</div>
+										<div className="flex w-1/2 h-full items-center justify-center gap-8">
+											<div className="bg-app-grey w-11/12 h-full rounded-md flex drop-shadow-3xl">
+												<input
+													type="radio"
+													id="gameplayMain"
+													name="typeFocus"
+													className="w-0 h-0 invisible"
+													value="gameplayMain"
+													defaultChecked
+												/>
+												<label
+													htmlFor="gameplayMain"
+													className="cursor-pointer w-1/2 h-full rounded-md flex items-center justify-center -ml-1 hover:scale-105 hover:drop-shadow-3xl hover:outline hover:outline-1 hover:outline-app-secondary"
+												>
+													MAIN STORY
+												</label>
+												<input
+													type="radio"
+													id="gameplayMainExtra"
+													name="typeFocus"
+													className="w-0 h-0 invisible"
+													value="gameplayMainExtra"
+												/>
+												<label
+													htmlFor="gameplayMainExtra"
+													className="cursor-pointer w-1/2 h-full rounded-md flex items-center justify-center hover:scale-105 hover:drop-shadow-3xl hover:outline hover:outline-1 hover:outline-app-secondary"
+												>
+													STORY + EXTRAS
+												</label>
+												<input
+													type="radio"
+													id="gameplayCompletionist"
+													name="typeFocus"
+													className="w-0 h-0 invisible"
+													value="gameplayCompletionist"
+												/>
+												<label
+													htmlFor="gameplayCompletionist"
+													className="cursor-pointer w-1/2 h-full rounded-md flex items-center justify-center hover:scale-105 hover:drop-shadow-3xl hover:outline hover:outline-1 hover:outline-app-secondary"
+												>
+													COMPLETIONIST
+												</label>
+											</div>
+										</div>
+									</div>
+								</form>
 							</div>
 							<div className="text-3xl font-extrabold cursor-default">
 								Based in your time (quit your job)
@@ -261,3 +357,5 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 		</>
 	);
 }
+
+//TODO: REFACTOR UI into smaller chunks, once we have it functional, because a pain point might be trying read it lol... Jesus help me
