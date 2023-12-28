@@ -3,39 +3,39 @@ import Latest from "./Latest";
 import Searched from "./Searched";
 
 export default function ContentSection({
-	searchedData,
-	newItemToAdd,
-	globalGameList,
+  searchedData,
+  newItemToAdd,
+  globalGameList,
 }) {
-	const [currentSearch, setCurrentSearch] = useState("");
-	const [currentGlobalGameList, setGlobalGameList] = useState([]);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const [currentGlobalGameList, setGlobalGameList] = useState([]);
 
-	useEffect(() => {
-		setCurrentSearch(searchedData);
-	}, [searchedData]);
+  useEffect(() => {
+    setCurrentSearch(searchedData);
+  }, [searchedData]);
 
-	useEffect(() => {
-		setGlobalGameList(globalGameList);
-	}, [globalGameList]);
+  useEffect(() => {
+    setGlobalGameList(globalGameList);
+  }, [globalGameList]);
 
-	const handleNewTracking = (item) => {
-		newItemToAdd(item);
-	};
+  const handleNewTracking = (item) => {
+    newItemToAdd(item);
+  };
 
-	return (
-		<>
-			{searchedData === "" ? (
-				<Latest
-					newItemToAdd={handleNewTracking}
-					globalGameList={currentGlobalGameList}
-				/>
-			) : (
-				<Searched
-					searchValue={currentSearch}
-					newItemToAdd={handleNewTracking}
-					globalGameList={currentGlobalGameList}
-				/>
-			)}
-		</>
-	);
+  return (
+    <>
+      {searchedData === "" ? (
+        <Latest
+          newItemToAdd={handleNewTracking}
+          globalGameList={currentGlobalGameList}
+        />
+      ) : (
+        <Searched
+          searchValue={currentSearch}
+          newItemToAdd={handleNewTracking}
+          globalGameList={currentGlobalGameList}
+        />
+      )}
+    </>
+  );
 }
