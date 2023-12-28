@@ -13,10 +13,11 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 	const [timeGameplayMainExtras, setTimeGameplayMainExtras] = useState(0);
 
 	// Refs of FORM Data
-	const hoursAmountInput = useRef(0);
+	const hoursAmountInput = useRef("");
 	const [hoursAmount, setHoursAmount] = useState(0);
 	const [scheduleType, setScheduleType] = useState("daily");
 	const [focusType, setFocusType] = useState("gameplayMain");
+	const [displayedResults, setDisplayResults] = useState("");
 
 	const toggleTrackingSection = () => {
 		setIsActive(!isActive);
@@ -101,6 +102,33 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 		e.preventDefault();
 	};
 
+	const totalSum = () => {
+		switch (focusType) {
+			case "gameplayMain":
+				const hourListMain = trackingList.map((item) => item.gameplayMain);
+				return hourListMain.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue;
+				}, 0);
+				break;
+			case "gameplayMainExtra":
+				const hourListExtra = trackingList.map(
+					(item) => item.gameplayMainExtra
+				);
+				return hourListExtra.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue;
+				}, 0);
+				break;
+			case "gameplayCompletionist":
+				const hourListCompletion = trackingList.map(
+					(item) => item.gameplayCompletionist
+				);
+				return hourListCompletion.reduce((accumulator, currentValue) => {
+					return accumulator + currentValue;
+				}, 0);
+				break;
+		}
+	};
+
 	useEffect(() => {
 		console.log(
 			"SCHEDULE TYPE: " +
@@ -110,7 +138,33 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 				" || Focus: " +
 				focusType
 		);
-	}, [scheduleType, hoursAmount, focusType]);
+		const totalTime = totalSum();
+		let resultsToDisplay = 0;
+		console.log("Amount of Hours based on Focus: " + totalTime);
+
+		switch (scheduleType) {
+			case "daily":
+				resultsToDisplay = Math.round(totalTime / hoursAmount);
+				if (resultsToDisplay === Infinity) resultsToDisplay = 0;
+				break;
+			case "weekly":
+				resultsToDisplay = Math.round(totalTime / (hoursAmount / 7));
+				if (resultsToDisplay === Infinity) resultsToDisplay = 0;
+				break;
+		}
+
+		if (resultsToDisplay >= 365) {
+			let years = Math.floor(resultsToDisplay / 365);
+			let days = resultsToDisplay % 365;
+			setDisplayResults(years + " YEAR AND " + days + " DAYS TO FINISH THOSE GAMES 👀");
+		} else if (resultsToDisplay < 1) {
+			setDisplayResults(
+				"I need your schedule to calculate how long is going to take you 🥺"
+			);
+		} else {
+			setDisplayResults(resultsToDisplay + " DAYS TO FINISH THOSE GAMES 👀");
+		}
+	}, [scheduleType, hoursAmount, focusType, trackingList]);
 
 	useEffect(() => {
 		if (Object.keys(newItemToTrack).length === 0) {
@@ -287,7 +341,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 												onChange={(e) => setHoursAmount(e.target.value)}
 												ref={hoursAmountInput}
 												min={0.5}
-												max={scheduleType === "daily" ? 24 : undefined}
+												max={scheduleType === "daily" ? 24 : 168}
 											/>
 											<div className="bg-app-grey w-1/2 h-full rounded-md flex drop-shadow-3xl">
 												<input
@@ -391,6 +445,11 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 									Based in your time, this would be the overview of how long it
 									will take you to finish those sweet sweet games of yours...
 								</p>
+								<div className="w-full h-1/2 flex items-center justify-end text-xl font-bold text-center text-white mt-2">
+									<div className="h-full w-2/4 bg-app-complementary flex items-center justify-center rounded-2xl drop-shadow-3xl">
+										{displayedResults}
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
