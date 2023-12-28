@@ -2,21 +2,30 @@ import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 
 export default function Tracking({ newItemToTrack, listOfGames }) {
+	// Persisten Local Data
 	const [trackingList, setTrackingList] = useState(() => {
 		const localData = localStorage.getItem("trackingList");
 		return localData ? JSON.parse(localData) : [];
 	});
+	const [hoursAmount, setHoursAmount] = useState(() => {
+		const localData = localStorage.getItem("hoursAmount");
+		return localData ? parseFloat(localData) : 0;
+	});
+	const [scheduleType, setScheduleType] = useState(() => {
+		const localData = localStorage.getItem("scheduleType");
+		return localData ? localData : "daily";
+	});
+	const [focusType, setFocusType] = useState(() => {
+		const localData = localStorage.getItem("focusType");
+		return localData ? localData : "gameplayMain";
+	});
+
 	const [isActive, setIsActive] = useState(true);
 	const [longestGame, setLongestGame] = useState(0);
 	const [shortestGame, setShortestGame] = useState(0);
 	const [timeGameplayMain, setTimeGameplayMain] = useState(0);
 	const [timeGameplayMainExtras, setTimeGameplayMainExtras] = useState(0);
-
-	// Refs of FORM Data
-	const hoursAmountInput = useRef("");
-	const [hoursAmount, setHoursAmount] = useState(0);
-	const [scheduleType, setScheduleType] = useState("daily");
-	const [focusType, setFocusType] = useState("gameplayMain");
+	const hoursAmountInput = useRef(0);
 	const [displayedResults, setDisplayResults] = useState("");
 
 	const toggleTrackingSection = () => {
@@ -130,17 +139,8 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 	};
 
 	useEffect(() => {
-		/*console.log(
-			"SCHEDULE TYPE: " +
-				scheduleType +
-				" || Hours in total: " +
-				hoursAmount +
-				" || Focus: " +
-				focusType
-		);*/
 		const totalTime = totalSum();
 		let resultsToDisplay = 0;
-		//console.log("Amount of Hours based on Focus: " + totalTime);
 
 		switch (scheduleType) {
 			case "daily":
@@ -189,6 +189,22 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 		localStorage.setItem("trackingList", JSON.stringify(trackingList));
 		listOfGames(trackingList);
 	}, [trackingList]);
+
+	useEffect(() => {
+		const storedHoursAmount = localStorage.getItem("hoursAmount");
+		const storedScheduleType = localStorage.getItem("scheduleType");
+		const storedFocusType = localStorage.getItem("focusType");
+
+		setHoursAmount(storedHoursAmount ? parseFloat(storedHoursAmount) : 0);
+		setScheduleType(storedScheduleType || "daily");
+		setFocusType(storedFocusType || "gameplayMain");
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem("hoursAmount", hoursAmount);
+		localStorage.setItem("scheduleType", scheduleType);
+		localStorage.setItem("focusType", focusType);
+	}, [hoursAmount, scheduleType, focusType]);
 
 	return (
 		<>
@@ -344,6 +360,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 												ref={hoursAmountInput}
 												min={0.5}
 												max={scheduleType === "daily" ? 24 : 168}
+												value={hoursAmount}
 											/>
 											<div className="bg-app-grey w-1/2 h-full rounded-md flex drop-shadow-3xl">
 												<input
@@ -355,7 +372,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													onChange={(e) => {
 														setScheduleType(e.target.value);
 													}}
-													defaultChecked
+													checked={scheduleType === "daily"}
 												/>
 												<label
 													htmlFor="daily"
@@ -372,6 +389,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													onChange={(e) => {
 														setScheduleType(e.target.value);
 													}}
+													checked={scheduleType === "weekly"}
 												/>
 												<label
 													htmlFor="weekly"
@@ -397,7 +415,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													className="w-0 h-0 invisible"
 													value="gameplayMain"
 													onChange={(e) => setFocusType(e.target.value)}
-													defaultChecked
+													checked={focusType === "gameplayMain"}
 												/>
 												<label
 													htmlFor="gameplayMain"
@@ -412,6 +430,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													className="w-0 h-0 invisible"
 													onChange={(e) => setFocusType(e.target.value)}
 													value="gameplayMainExtra"
+													checked={focusType === "gameplayMainExtra"}
 												/>
 												<label
 													htmlFor="gameplayMainExtra"
@@ -426,6 +445,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													className="w-0 h-0 invisible"
 													onChange={(e) => setFocusType(e.target.value)}
 													value="gameplayCompletionist"
+													checked={focusType === "gameplayCompletionist"}
 												/>
 												<label
 													htmlFor="gameplayCompletionist"
@@ -460,5 +480,3 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 		</>
 	);
 }
-
-//TODO: REFACTOR UI into smaller chunks, once we have it functional, because a pain point might be trying read it lol... Jesus help me
