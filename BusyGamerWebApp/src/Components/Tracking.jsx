@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 
 export default function Tracking({ newItemToTrack, listOfGames }) {
@@ -11,6 +11,12 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 	const [shortestGame, setShortestGame] = useState(0);
 	const [timeGameplayMain, setTimeGameplayMain] = useState(0);
 	const [timeGameplayMainExtras, setTimeGameplayMainExtras] = useState(0);
+
+	// Refs of FORM Data
+	const hoursAmountInput = useRef(0);
+	const [hoursAmount, setHoursAmount] = useState(0);
+	const [scheduleType, setScheduleType] = useState("daily");
+	const [focusType, setFocusType] = useState("gameplayMain");
 
 	const toggleTrackingSection = () => {
 		setIsActive(!isActive);
@@ -91,6 +97,21 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 		}
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+	};
+
+	useEffect(() => {
+		console.log(
+			"SCHEDULE TYPE: " +
+				scheduleType +
+				" || Hours in total: " +
+				hoursAmount +
+				" || Focus: " +
+				focusType
+		);
+	}, [scheduleType, hoursAmount, focusType]);
+
 	useEffect(() => {
 		if (Object.keys(newItemToTrack).length === 0) {
 			return;
@@ -139,7 +160,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 						>
 							󰞓
 						</div>
-						<div className=" w-full h-full p-4 flex flex-col gap-4 pl-8 pr-8">
+						<div className=" w-full h-full p-4 flex flex-col gap-3 pl-8 pr-8">
 							<div className="text-3xl font-extrabold cursor-default">
 								THIS WILL TAKE A WHILE...
 								<div className="bg-app-complementary w-1/2 h-2"></div>
@@ -160,7 +181,10 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 									</div>
 								</div>
 							</div>
-							<div className="w-full h-64 overflow-auto">
+							<div
+								id="gameListSection"
+								className="w-full h-64 overflow-auto"
+							>
 								{trackingList.length !== 0 ? (
 									trackingList.map((item) => (
 										<div
@@ -197,8 +221,8 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 									</p>
 								)}
 							</div>
-							<div>
-								<div className="w-full h-36 flex justify-between">
+							<div id="generalPurposeDataSection">
+								<div className="w-full h-32 flex justify-between">
 									<div className="flex flex-col items-center w-1/6 justify-center">
 										<div className="flex w-full h-1/3 items-center justify-center bg-app-complementary rounded-lg drop-shadow-3xl text-base font-bold">
 											SHORTEST GAME
@@ -240,11 +264,13 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 										</div>
 									</div>
 								</div>
+							</div>
+							<div id="formSection">
 								<div className="text-3xl font-extrabold cursor-default">
 									How Long Can You Play tho?
 									<div className="bg-app-complementary w-1/2 h-2"></div>
 								</div>
-								<form>
+								<form onSubmit={handleSubmit}>
 									<div className="flex w-full h-12 flex-row justify-between mt-4">
 										<div className="w-1/2 h-full flex items-center justify-center rounded-md bg-app-secondary-dark drop-shadow-3xl">
 											<label htmlFor="AmountHours">
@@ -253,10 +279,15 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 										</div>
 										<div className="flex w-1/2 h-full items-center justify-around">
 											<input
-												className="w-1/3 h-full bg-app-grey placeholder:text-app-main rounded-md text-center drop-shadow-3xl"
+												className="w-1/3 h-full bg-app-grey placeholder:text-app-main rounded-md text-center drop-shadow-3xl focus:border-app-complementary"
 												type="number"
 												id="AmountHours"
 												placeholder="00"
+												step={0.5}
+												onChange={(e) => setHoursAmount(e.target.value)}
+												ref={hoursAmountInput}
+												min={0.5}
+												max={scheduleType === "daily" ? 24 : undefined}
 											/>
 											<div className="bg-app-grey w-1/2 h-full rounded-md flex drop-shadow-3xl">
 												<input
@@ -265,6 +296,9 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													name="typeAmount"
 													value="daily"
 													className="w-0 h-0 invisible"
+													onChange={(e) => {
+														setScheduleType(e.target.value);
+													}}
 													defaultChecked
 												/>
 												<label
@@ -279,6 +313,9 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													name="typeAmount"
 													className="w-0 h-0 invisible"
 													value="weekly"
+													onChange={(e) => {
+														setScheduleType(e.target.value);
+													}}
 												/>
 												<label
 													htmlFor="weekly"
@@ -303,6 +340,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													name="typeFocus"
 													className="w-0 h-0 invisible"
 													value="gameplayMain"
+													onChange={(e) => setFocusType(e.target.value)}
 													defaultChecked
 												/>
 												<label
@@ -316,6 +354,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													id="gameplayMainExtra"
 													name="typeFocus"
 													className="w-0 h-0 invisible"
+													onChange={(e) => setFocusType(e.target.value)}
 													value="gameplayMainExtra"
 												/>
 												<label
@@ -329,6 +368,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 													id="gameplayCompletionist"
 													name="typeFocus"
 													className="w-0 h-0 invisible"
+													onChange={(e) => setFocusType(e.target.value)}
 													value="gameplayCompletionist"
 												/>
 												<label
@@ -342,14 +382,16 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 									</div>
 								</form>
 							</div>
-							<div className="text-3xl font-extrabold cursor-default">
-								Based in your time (quit your job)
-								<div className="bg-app-complementary w-1/2 h-2"></div>
+							<div id="resultsSection">
+								<div className="text-3xl font-extrabold cursor-default mt-6">
+									Based in your time (quit your job)
+									<div className="bg-app-complementary w-1/2 h-2"></div>
+								</div>
+								<p>
+									Based in your time, this would be the overview of how long it
+									will take you to finish those sweet sweet games of yours...
+								</p>
 							</div>
-							<p>
-								Based in your time, this would be the overview of how long it
-								will take you to finish those sweet sweet games of yours...
-							</p>
 						</div>
 					</div>
 				</div>
