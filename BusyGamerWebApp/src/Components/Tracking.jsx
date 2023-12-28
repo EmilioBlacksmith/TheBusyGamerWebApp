@@ -130,17 +130,17 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 	};
 
 	useEffect(() => {
-		console.log(
+		/*console.log(
 			"SCHEDULE TYPE: " +
 				scheduleType +
 				" || Hours in total: " +
 				hoursAmount +
 				" || Focus: " +
 				focusType
-		);
+		);*/
 		const totalTime = totalSum();
 		let resultsToDisplay = 0;
-		console.log("Amount of Hours based on Focus: " + totalTime);
+		//console.log("Amount of Hours based on Focus: " + totalTime);
 
 		switch (scheduleType) {
 			case "daily":
@@ -156,7 +156,9 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 		if (resultsToDisplay >= 365) {
 			let years = Math.floor(resultsToDisplay / 365);
 			let days = resultsToDisplay % 365;
-			setDisplayResults(years + " YEAR AND " + days + " DAYS TO FINISH THOSE GAMES 👀");
+			setDisplayResults(
+				years + " YEAR AND " + days + " DAYS TO FINISH THOSE GAMES 👀"
+			);
 		} else if (resultsToDisplay < 1) {
 			setDisplayResults(
 				"I need your schedule to calculate how long is going to take you 🥺"
@@ -445,7 +447,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
 									Based in your time, this would be the overview of how long it
 									will take you to finish those sweet sweet games of yours...
 								</p>
-								<div className="w-full h-1/2 flex items-center justify-end text-xl font-bold text-center text-white mt-2">
+								<div className="w-full h-1/2 flex items-center justify-end text-xl font-bold text-center text-white">
 									<div className="h-full w-2/4 bg-app-complementary flex items-center justify-center rounded-2xl drop-shadow-3xl">
 										{displayedResults}
 									</div>
