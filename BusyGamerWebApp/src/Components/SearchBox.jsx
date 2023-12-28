@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDom from "react-dom";
 
 export default function SearchBox({ open, onClose, valueSearched }) {
 	const [value, setValue] = useState("");
+	const searchBarRef = useRef(null);
+
+	useEffect(() => {
+		if (open && searchBarRef.current) {
+			searchBarRef.current.focus();
+		}
+	}, [open]);
 
 	const onChange = (e) => {
 		setValue(e.target.value);
@@ -25,7 +32,7 @@ export default function SearchBox({ open, onClose, valueSearched }) {
 	return ReactDom.createPortal(
 		<>
 			<div
-				className="fixed top-0 right-0 left-0 bottom-0 w-screen h-screen bg-opacity-70 backdrop-blur-md bg-black z-10 flex justify-center pt-32"
+				className="fixed top-0 right-0 left-0 bottom-0 w-screen h-screen bg-opacity-70 backdrop-blur-md bg-black z-10 flex justify-center pt-32 animate-fade-in"
 				onClick={onClose}
 			>
 				<div
@@ -39,6 +46,7 @@ export default function SearchBox({ open, onClose, valueSearched }) {
 							placeholder="WHAT ARE WE PLAYING NEXT?"
 							value={value}
 							onChange={onChange}
+							ref={searchBarRef}
 						/>
 						<button
 							className="text-app-grey text-2xl relative float-right right-6 -top-11 cursor-pointer"
