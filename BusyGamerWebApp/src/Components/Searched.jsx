@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const searchURL = "http://localhost:8080/search?q=";
+const searchURL = "https://hltb-api.onrender.com/search?q=";
 
 export default function Searched({
   searchValue,

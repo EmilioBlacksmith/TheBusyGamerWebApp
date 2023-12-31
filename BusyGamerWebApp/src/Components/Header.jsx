@@ -50,14 +50,37 @@ export default function Header({ valueSearched }) {
 
         <Modal open={isModalOpen} onClose={toggleModal}>
           <div className="text-xl font-bold">ABOUT.</div>
-          <div>
+          <p className="text-justify">
             The Busy Gamer App, allows you to track the videogames that you want
             to play, and it helps you to calculate approximately how long it's
             going to take you to finish all those games. (not everyone can play
             more than 2 hours a day :c )
-          </div>
+          </p>
           <div className="text-xl font-bold">HOW IT WORKS?</div>
-          <div>idk, lol kill me...</div>
+          <div className="pl-8">
+            <ol className="flex list-decimal flex-col gap-2">
+              <li>
+                Search the game you want to track, by clicking on the  button
+                on the top-right corner.
+              </li>
+              <li>Hover and click the game card you want to track/play.</li>
+              <li>
+                Open the tracking section on the left, by clicking the 󰞔 button
+                on the top-left corner, or the entirety of the left box/section.
+              </li>
+              <li>
+                Define your gaming schedule on the form "How Long Can You Play
+                tho?", by adding your daily or weekly schedule and define your
+                focus, either focus on main story, story + extras or
+                completionist.
+              </li>
+              <li>
+                Get the approximation of how long is going to take you to finish
+                those games on the bottom of the tracking section.
+              </li>
+              <li>Play and finish those games, cowboy! 🤠</li>
+            </ol>
+          </div>
         </Modal>
       </div>
     </>

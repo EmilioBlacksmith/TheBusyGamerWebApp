@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const baseURL = "http://localhost:8080/topGames";
+const baseURL = "https://hltb-api.onrender.com/topGames";
 
 export default function Latest({ newItemToAdd, globalGameList }) {
   const [data, setData] = useState([]);
