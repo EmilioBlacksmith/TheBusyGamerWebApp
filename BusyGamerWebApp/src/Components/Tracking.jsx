@@ -159,6 +159,10 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
       setDisplayResults(
         "I need your schedule to calculate how long is going to take you 🥺",
       );
+    } else if (totalTime === 0) {
+      setDisplayResults(
+        "No videogames in your list, go ahead, track some 🥺",
+      );
     } else {
       setDisplayResults(resultsToDisplay + " DAYS TO FINISH THOSE GAMES 👀");
     }
@@ -453,7 +457,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
                   will take you to finish those sweet sweet games of yours...
                 </p>
                 <div className="flex h-1/2 w-full cursor-default items-center justify-end text-center text-xl font-bold text-white">
-                  <div className="flex h-full w-2/4 items-center justify-center rounded-2xl bg-app-complementary drop-shadow-3xl">
+                  <div className="flex h-full w-2/4 items-center justify-center rounded-2xl bg-app-complementary drop-shadow-3xl p-2">
                     {displayedResults}
                   </div>
                 </div>
