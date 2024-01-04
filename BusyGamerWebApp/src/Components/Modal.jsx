@@ -7,16 +7,16 @@ export default function Modal({ open, children, onClose }) {
   return ReactDom.createPortal(
     <>
       <div
-        className="fixed bottom-0 left-0 right-0 top-0 z-10 flex h-screen w-screen animate-fade-in justify-center bg-black bg-opacity-50 pt-32 backdrop-blur-sm"
+        className="fixed bottom-0 left-0 right-0 top-0 z-10 flex h-screen w-screen animate-fade-in justify-center bg-black bg-opacity-50 pt-8 backdrop-blur-sm md:pt-32"
         onClick={onClose}
       >
         <div
-          className="z-10 flex h-max w-1/2 flex-col gap-4 rounded-xl bg-white p-8 text-justify text-black"
+          className="z-10 flex h-max w-11/12 flex-col rounded-xl bg-white p-4 text-justify text-black md:w-1/2 md:gap-4 md:p-8"
           onClick={(e) => e.stopPropagation()}
         >
           {children}
           <button
-            className="h-10 w-32 rounded-xl bg-app-complementary text-lg font-bold text-white"
+            className="h-10 w-32 rounded-md bg-app-complementary text-lg font-bold text-white"
             onClick={onClose}
           >
             CLOSE
