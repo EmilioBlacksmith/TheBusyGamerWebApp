@@ -49,22 +49,22 @@ export default function Latest({ newItemToAdd, globalGameList }) {
   };
 
   return (
-    <div className="mb-6 mt-6 flex w-5/6 flex-col gap-8 p-4">
-      <div className="p-2 text-3xl font-extrabold">
+    <div className="mb-6 mt-6 flex w-5/6 flex-col gap-4 p-4 md:gap-8">
+      <div className="p-2 text-xl font-extrabold md:text-3xl">
         POPULAR RIGHT NOW
-        <div className="h-2 w-1/3 bg-app-complementary"></div>
+        <div className="h-2 w-full bg-app-complementary md:w-1/3"></div>
       </div>
-      <div className="mt-4 flex flex-wrap justify-between gap-x-8 gap-y-16 ">
+      <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-4 md:justify-between md:gap-x-8 md:gap-y-16">
         {data.map((item) => (
           <div
             key={item.id}
-            className="-mt-2 mb-4 h-80 w-64 rounded-xl align-bottom drop-shadow-3xl hover:backdrop-blur-3xl"
+            className="-mt-2 mb-4 h-48 w-32 rounded-xl align-bottom drop-shadow-3xl md:h-80 md:w-64 md:hover:backdrop-blur-3xl"
             onClick={() => {
               sendItemToTrack(item);
             }}
           >
             {containsItem(item) ? (
-              <div className="pointer-events-none fixed z-10 flex h-full w-full items-center justify-center rounded-lg bg-black bg-opacity-75 text-center text-2xl font-black shadow-xl">
+              <div className="pointer-events-none fixed z-10 flex h-full w-full items-center justify-center rounded-lg bg-black bg-opacity-75 text-center text-xl font-black shadow-xl md:text-2xl">
                 TRACKED
               </div>
             ) : (
@@ -75,7 +75,7 @@ export default function Latest({ newItemToAdd, globalGameList }) {
               alt={item.name}
               className="fixed h-full w-full rounded-xl object-cover"
             />
-            <div className="flex h-full w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg bg-black bg-opacity-75 p-2 text-center opacity-0 outline outline-1 outline-app-complementary drop-shadow-3xl backdrop-blur-md transition-all duration-200 ease-in-out hover:opacity-100">
+            <div className="hidden h-full w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg bg-black bg-opacity-75 p-2 text-center opacity-0 outline outline-1 outline-app-complementary drop-shadow-3xl backdrop-blur-md transition-all duration-200 ease-in-out hover:opacity-100 md:flex">
               {!containsItem(item) ? (
                 <div className="absolute top-0 -mt-4 flex h-10 w-10 items-center justify-center rounded-full bg-app-complementary text-xl font-black">
                   +
