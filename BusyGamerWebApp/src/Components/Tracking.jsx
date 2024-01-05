@@ -160,9 +160,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
         "I need your schedule to calculate how long is going to take you 🥺",
       );
     } else if (totalTime === 0) {
-      setDisplayResults(
-        "No videogames in your list, go ahead, track some 🥺",
-      );
+      setDisplayResults("No videogames in your list, go ahead, track some 🥺");
     } else {
       setDisplayResults(resultsToDisplay + " DAYS TO FINISH THOSE GAMES 👀");
     }
@@ -198,10 +196,10 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
     <>
       {isActive ? (
         <div
-          className="fixed left-0 z-10 h-full w-12 cursor-pointer bg-app-secondary p-2 drop-shadow-3xl"
+          className="fixed left-0 z-10 h-full w-4 cursor-pointer bg-app-secondary drop-shadow-3xl md:w-12 md:p-2"
           onClick={toggleTrackingSection}
         >
-          <div className="pointer-events-none mt-2 flex h-12 w-16 cursor-pointer items-center  justify-center rounded-md bg-app-secondary pl-1 text-2xl font-black">
+          <div className="mt-2 flex h-8 w-10 cursor-pointer items-center justify-center rounded-md  bg-app-secondary font-black md:h-12 md:w-16 md:pl-1 md:text-2xl">
             󰞔
           </div>
         </div>
@@ -211,32 +209,32 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
           onClick={toggleTrackingSection}
         >
           <div
-            className="fixed left-0 z-10 h-full w-7/12 animate-left-in bg-app-secondary drop-shadow-3xl"
+            className="fixed left-0 z-10 h-full w-11/12  animate-left-in bg-app-secondary drop-shadow-3xl md:w-7/12"
             onClick={(e) => e.stopPropagation()}
           >
             <div
-              className="fixed -right-10 mt-2 flex h-12 w-16 cursor-pointer items-center justify-center  rounded-md bg-app-secondary pl-1 text-2xl font-black"
+              className="fixed -right-7 mt-2 flex h-8 w-10 cursor-pointer items-center justify-center rounded-md bg-app-secondary font-black md:-right-10 md:h-12 md:w-16 md:pl-1 md:text-2xl"
               onClick={toggleTrackingSection}
             >
               󰞓
             </div>
-            <div className=" flex h-full w-full flex-col gap-3 p-4 pl-8 pr-8">
-              <div className="cursor-default text-3xl font-extrabold">
+            <div className="flex h-full w-full flex-col gap-1 p-4 md:gap-3 md:pl-8 md:pr-8">
+              <div className="cursor-default font-extrabold md:text-3xl">
                 THIS WILL TAKE A WHILE...
-                <div className="h-2 w-1/2 bg-app-complementary"></div>
+                <div className="h-2 w-full bg-app-complementary md:w-1/2"></div>
               </div>
-              <div className="flex h-12 w-full cursor-default flex-row">
-                <div className="flex h-full w-2/6 items-center justify-center rounded-lg bg-app-secondary-dark text-base font-bold drop-shadow-3xl">
+              <div className="flex h-8 w-full cursor-default flex-row justify-center md:h-12">
+                <div className="flex h-full w-2/6 items-center justify-center rounded-lg bg-app-secondary-dark text-xs font-bold drop-shadow-3xl md:text-base">
                   TITLE
                 </div>
-                <div className="flex h-full w-4/6 flex-row justify-center gap-6">
-                  <div className="flex w-40 items-center justify-center rounded-lg bg-app-complementary text-base font-bold drop-shadow-3xl">
-                    MAIN STORY
+                <div className="flex h-full w-4/6 flex-row justify-center gap-3 md:gap-6">
+                  <div className="flex w-28 items-center justify-center rounded-lg bg-app-complementary text-xs font-bold drop-shadow-3xl md:w-40 md:text-base">
+                    STORY
                   </div>
-                  <div className="flex w-40 items-center justify-center rounded-lg bg-app-complementary text-center text-base font-bold drop-shadow-3xl">
-                    STORY + EXTRAS
+                  <div className="flex w-28 items-center justify-center rounded-lg bg-app-complementary text-xs font-bold drop-shadow-3xl md:w-40 md:text-base">
+                    +EXTRAS
                   </div>
-                  <div className="flex w-40 items-center justify-center rounded-lg bg-app-complementary text-base font-bold drop-shadow-3xl">
+                  <div className="flex w-28 items-center justify-center rounded-lg bg-app-complementary text-xs font-bold drop-shadow-3xl md:w-40 md:text-base">
                     COMPLETIONIST
                   </div>
                 </div>
@@ -245,25 +243,25 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
                 {trackingList.length !== 0 ? (
                   trackingList.map((item) => (
                     <div
-                      className="mb-3 flex h-12 w-full cursor-default flex-row rounded-lg bg-app-secondary-dark drop-shadow-sm"
+                      className="mb-3 flex h-8 w-full cursor-default flex-row rounded-lg bg-app-secondary-dark drop-shadow-sm md:h-12"
                       key={item.id}
                     >
-                      <div className="flex h-full w-2/6 items-center pl-2 font-bold">
+                      <div className="flex h-full w-2/6 items-center pl-1 text-xs font-bold md:pl-2 md:text-base">
                         <p className="truncate">{item.name}</p>
                       </div>
-                      <div className="flex h-full w-4/6 flex-row justify-center gap-6 truncate text-center text-lg font-semibold text-app-grey">
-                        <div className="flex w-40 items-center justify-center">
+                      <div className="flex h-full w-4/6 flex-row justify-center gap-3 truncate text-center text-xs font-semibold text-app-grey md:gap-6 md:text-lg">
+                        <div className="flex w-28 items-center justify-center md:w-40">
                           {formatHours(item.gameplayMain)} Hours
                         </div>
-                        <div className="flex w-40 items-center justify-center">
+                        <div className="flex w-28 items-center justify-center md:w-40">
                           {formatHours(item.gameplayMainExtra)} Hours
                         </div>
-                        <div className="flex w-40 items-center justify-center">
+                        <div className="flex w-28 items-center justify-center md:w-40">
                           {formatHours(item.gameplayCompletionist)} Hours
                         </div>
                       </div>
                       <div
-                        className="fixed right-0 top-0 flex h-full w-10 cursor-pointer items-center rounded-lg bg-red pl-2.5 text-2xl drop-shadow-3xl"
+                        className="fixed right-0 top-0 flex h-full w-4 cursor-pointer items-center rounded-lg bg-red pl-0.5 drop-shadow-3xl md:w-10 md:pl-2.5 md:text-2xl"
                         onClick={() => {
                           deleteEntry(item);
                         }}
@@ -279,68 +277,68 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
                 )}
               </div>
               <div id="generalPurposeDataSection">
-                <div className="flex h-32 w-full cursor-default justify-between">
+                <div className="flex h-28 w-full cursor-default justify-between md:h-32">
                   <div className="flex w-1/6 flex-col items-center justify-center">
-                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-base font-bold drop-shadow-3xl">
-                      SHORTEST GAME
+                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-sm md:text-base md:font-bold md:drop-shadow-3xl">
+                      SHORTEST
                     </div>
-                    <div className="flex h-2/3 w-full items-center justify-center text-center">
+                    <div className="flex h-2/3 w-full items-center justify-center truncate text-xs md:text-center md:text-base">
                       {shortestGame}
                     </div>
                   </div>
                   <div className="flex w-1/6 flex-col items-center justify-center">
-                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-base font-bold drop-shadow-3xl">
-                      LONGEST GAME
+                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-sm md:text-base md:font-bold md:drop-shadow-3xl">
+                      LONGEST
                     </div>
-                    <div className="flex h-2/3 w-full items-center justify-center text-center">
+                    <div className="flex h-2/3 w-full items-center justify-center truncate text-xs md:text-center md:text-base">
                       {longestGame}
                     </div>
                   </div>
                   <div className="flex w-1/6 flex-col items-center justify-center">
-                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-center text-sm font-bold drop-shadow-3xl">
-                      MAIN STORY HOURS
+                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-sm md:text-base md:font-bold md:drop-shadow-3xl">
+                      STORY HOURS
                     </div>
-                    <div className="flex h-2/3 w-full items-center justify-center text-center">
+                    <div className="flex h-2/3 w-full items-center justify-center truncate text-xs md:text-center md:text-base">
                       {timeGameplayMain}
                     </div>
                   </div>
                   <div className="flex w-1/6 flex-col items-center justify-center">
-                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-center text-sm font-bold drop-shadow-3xl">
-                      STORY + EXTRAS HOURS
+                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-sm md:text-base md:font-bold md:drop-shadow-3xl">
+                      +EXTRAS HOURS
                     </div>
-                    <div className="flex h-2/3 w-full items-center justify-center text-center">
+                    <div className="flex h-2/3 w-full items-center justify-center truncate text-xs md:text-center md:text-base">
                       {timeGameplayMainExtras}
                     </div>
                   </div>
                   <div className="flex w-1/6 flex-col items-center justify-center">
-                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-base font-bold drop-shadow-3xl">
-                      HOW MANY GAMES
+                    <div className="flex h-1/3 w-full items-center justify-center rounded-lg bg-app-complementary text-sm md:text-base md:font-bold md:drop-shadow-3xl">
+                      GAMES
                     </div>
-                    <div className="flex h-2/3 w-full items-center justify-center text-center">
+                    <div className="flex h-2/3 w-full items-center justify-center truncate text-xs md:text-center md:text-base">
                       {trackingList.length}
                     </div>
                   </div>
                 </div>
               </div>
               <div id="formSection">
-                <div className="cursor-default text-3xl font-extrabold">
+                <div className="cursor-default font-extrabold md:text-3xl">
                   How Long Can You Play tho?
-                  <div className="h-2 w-1/2 bg-app-complementary"></div>
+                  <div className="h-2 bg-app-complementary md:w-1/2"></div>
                 </div>
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
                   }}
                 >
-                  <div className="mt-4 flex h-12 w-full flex-row justify-between">
-                    <div className="flex h-full w-1/2 items-center justify-center rounded-md bg-app-secondary-dark drop-shadow-3xl">
+                  <div className="mt-4 flex h-full w-full flex-col justify-between md:h-12 md:flex-row">
+                    <div className="flex h-6 w-full items-center justify-center rounded-md bg-app-secondary-dark text-xs drop-shadow-3xl md:h-full md:w-1/2 md:text-base">
                       <label htmlFor="AmountHours">
                         How many hours can you play?
                       </label>
                     </div>
-                    <div className="flex h-full w-1/2 items-center justify-around">
+                    <div className="mt-2 flex h-6 w-full items-center justify-around text-xs md:mt-0 md:h-full md:w-1/2 md:text-base">
                       <input
-                        className="h-full w-1/3 rounded-md bg-app-grey text-center drop-shadow-3xl placeholder:text-app-main focus:border-app-complementary"
+                        className="h-full w-1/3 rounded-md bg-app-grey text-center text-xs drop-shadow-3xl placeholder:text-app-main focus:border-app-complementary md:text-base"
                         type="number"
                         id="AmountHours"
                         placeholder="00"
@@ -351,7 +349,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
                         max={scheduleType === "daily" ? 24 : 168}
                         value={hoursAmount}
                       />
-                      <div className="flex h-full w-1/2 rounded-md bg-app-grey drop-shadow-3xl">
+                      <div className="flex h-full w-1/2 rounded-md bg-app-grey text-xs drop-shadow-3xl md:text-base">
                         <input
                           type="radio"
                           id="daily"
@@ -389,14 +387,14 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 flex h-12 w-full flex-row justify-between">
-                    <div className="flex h-full w-1/2 items-center justify-center rounded-md bg-app-secondary-dark drop-shadow-3xl">
+                  <div className="mt-4 flex h-full w-full flex-col justify-between md:h-12 md:flex-row">
+                    <div className="flex h-6 w-full items-center justify-center rounded-md bg-app-secondary-dark text-xs drop-shadow-3xl md:h-full md:w-1/2 md:text-base">
                       <label htmlFor="AmountHours">
                         What are you focused on?
                       </label>
                     </div>
-                    <div className="flex h-full w-1/2 items-center justify-center gap-8">
-                      <div className="flex h-full w-11/12 rounded-md bg-app-grey drop-shadow-3xl">
+                    <div className="mt-2 flex h-full items-center justify-center gap-4 md:mt-0 md:w-1/2 md:gap-8 ">
+                      <div className="flex h-full w-11/12 rounded-md bg-app-grey text-xs drop-shadow-3xl md:text-base">
                         <input
                           type="radio"
                           id="gameplayMain"
@@ -410,7 +408,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
                           htmlFor="gameplayMain"
                           className="-ml-1 flex h-full w-1/2 cursor-pointer items-center justify-center rounded-md hover:scale-105 hover:outline hover:outline-1 hover:outline-app-secondary hover:drop-shadow-3xl"
                         >
-                          MAIN STORY
+                          STORY
                         </label>
                         <input
                           type="radio"
@@ -425,7 +423,7 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
                           htmlFor="gameplayMainExtra"
                           className="flex h-full w-1/2 cursor-pointer items-center justify-center rounded-md hover:scale-105 hover:outline hover:outline-1 hover:outline-app-secondary hover:drop-shadow-3xl"
                         >
-                          STORY + EXTRAS
+                          +EXTRAS
                         </label>
                         <input
                           type="radio"
@@ -448,16 +446,16 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
                 </form>
               </div>
               <div id="resultsSection">
-                <div className="mt-6 cursor-default text-3xl font-extrabold">
+                <div className="mt-4 cursor-default text-sm font-extrabold md:mt-6 md:text-3xl">
                   Based in your time (quit your job)
-                  <div className="h-2 w-1/2 bg-app-complementary"></div>
+                  <div className="h-2 w-full bg-app-complementary md:w-1/2"></div>
                 </div>
-                <p className="cursor-default">
+                <p className="cursor-default text-xs md:text-sm">
                   Based in your time, this would be the overview of how long it
                   will take you to finish those sweet sweet games of yours...
                 </p>
-                <div className="flex h-1/2 w-full cursor-default items-center justify-end text-center text-xl font-bold text-white">
-                  <div className="flex h-full w-2/4 items-center justify-center rounded-2xl bg-app-complementary drop-shadow-3xl p-2">
+                <div className="mt-4 flex h-fit w-full cursor-default items-center justify-end text-center text-xs font-bold text-white md:mt-0 md:h-1/2 md:text-xl">
+                  <div className="flex h-full w-2/4 items-center justify-center rounded-2xl bg-app-complementary p-2 drop-shadow-3xl">
                     {displayedResults}
                   </div>
                 </div>
