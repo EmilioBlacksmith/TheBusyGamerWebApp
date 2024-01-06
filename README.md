@@ -1,5 +1,6 @@
 # The Busy Gamer Web App
 [![Website Stat](https://img.shields.io/website-up-down-green-red/http/emilioblacksmith.github.io/TheBusyGamerWebApp/)](https://emilioblacksmith.github.io/TheBusyGamerWebApp/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://github.com/EmilioBlacksmith/TheBusyGamerWebApp/blob/main/LICENSE)
 
 ## Web app to track and calculate how long to finish your videogame backlog on a tight schedule
 
@@ -18,6 +19,8 @@ The reasoning behind this app is that not every gamer can afford to play more th
 The Busy Gamer Web App was made in conjunction with [TheBusyGamerAppAPI](https://github.com/EmilioBlacksmith/TheBusyGamerAppAPI), the backend NodeJS/Express App to handle the latest search queries, and the latest games being played currently.
 
 ## Preview
+
+[busygamerpreview.webm](https://github.com/EmilioBlacksmith/TheBusyGamerWebApp/assets/71019624/3660577c-a46b-45a2-b22a-fe5c18fb06c2)
 
 ## Contributing
 
@@ -40,4 +43,4 @@ Star it or share it to anyone that would find it useful for their own purpose an
 
 ## License
 
-This project is licensed under the GNU GENERAL PUBLIC LICENSE.
+This project is licensed under the [GNU GENERAL PUBLIC LICENSE](https://github.com/EmilioBlacksmith/TheBusyGamerWebApp/blob/main/LICENSE).
