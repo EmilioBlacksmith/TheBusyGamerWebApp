@@ -54,52 +54,62 @@ export default function Latest({ newItemToAdd, globalGameList }) {
         POPULAR RIGHT NOW
         <div className="h-2 w-full bg-app-complementary md:w-1/3"></div>
       </div>
-      <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-4 md:justify-between md:gap-x-8 md:gap-y-16">
-        {data.map((item) => (
-          <div
-            key={item.id}
-            className="-mt-2 mb-4 h-48 w-32 rounded-xl align-bottom drop-shadow-3xl md:h-80 md:w-64 md:hover:backdrop-blur-3xl"
-            onClick={() => {
-              sendItemToTrack(item);
-            }}
-          >
-            {containsItem(item) ? (
-              <div className="pointer-events-none fixed z-10 flex h-full w-full items-center justify-center rounded-lg bg-black bg-opacity-75 text-center text-xl font-black shadow-xl md:text-2xl">
-                TRACKED
-              </div>
-            ) : (
-              <></>
-            )}
-            <img
-              src={item.imageUrl}
-              alt={item.name}
-              className="fixed h-full w-full rounded-xl object-cover"
-            />
-            <div className="hidden h-full w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg bg-black bg-opacity-75 p-2 text-center opacity-0 outline outline-1 outline-app-complementary drop-shadow-3xl backdrop-blur-md transition-all duration-200 ease-in-out hover:opacity-100 md:flex">
-              {!containsItem(item) ? (
-                <div className="absolute top-0 -mt-4 flex h-10 w-10 items-center justify-center rounded-full bg-app-complementary text-xl font-black">
-                  +
+      {data.length < 1 ? (
+        <div className="flex w-full justify-center align-middle">
+          <div className="animate-pulse text-base font-black md:text-4xl">
+            LOADING GAMES... 😶‍🌫️
+          </div>
+        </div>
+      ) : (
+        <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-4 md:justify-between md:gap-x-8 md:gap-y-16">
+          {data.map((item) => (
+            <div
+              key={item.id}
+              className="-mt-2 mb-4 h-48 w-32 rounded-xl align-bottom drop-shadow-3xl md:h-80 md:w-64 md:hover:backdrop-blur-3xl"
+              onClick={() => {
+                sendItemToTrack(item);
+              }}
+            >
+              {containsItem(item) ? (
+                <div className="pointer-events-none fixed z-10 flex h-full w-full items-center justify-center rounded-lg bg-black bg-opacity-75 text-center text-xl font-black shadow-xl md:text-2xl">
+                  TRACKED
                 </div>
               ) : (
                 <></>
               )}
-              <div className="text-2xl font-bold">{item.name}</div>
-              <div className="-mb-3 text-sm font-semibold">Main Story:</div>
-              <div className="text-lg font-thin">
-                {formatHours(item.gameplayMain)} Hours
-              </div>
-              <div className="-mb-3 text-sm font-semibold">Main + Extra:</div>
-              <div className="text-lg font-thin">
-                {formatHours(item.gameplayMainExtra)} Hours
-              </div>
-              <div className="-mb-3 text-sm font-semibold">Completionist:</div>
-              <div className="text-lg font-thin">
-                {formatHours(item.gameplayCompletionist)} Hours
+              <img
+                src={item.imageUrl}
+                alt={item.name}
+                className="fixed h-full w-full rounded-xl object-cover"
+              />
+              <div className="hidden h-full w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg bg-black bg-opacity-75 p-2 text-center opacity-0 outline outline-1 outline-app-complementary drop-shadow-3xl backdrop-blur-md transition-all duration-200 ease-in-out hover:opacity-100 md:flex">
+                {!containsItem(item) ? (
+                  <div className="absolute top-0 -mt-4 flex h-10 w-10 items-center justify-center rounded-full bg-app-complementary text-xl font-black">
+                    +
+                  </div>
+                ) : (
+                  <></>
+                )}
+                <div className="text-2xl font-bold">{item.name}</div>
+                <div className="-mb-3 text-sm font-semibold">Main Story:</div>
+                <div className="text-lg font-thin">
+                  {formatHours(item.gameplayMain)} Hours
+                </div>
+                <div className="-mb-3 text-sm font-semibold">Main + Extra:</div>
+                <div className="text-lg font-thin">
+                  {formatHours(item.gameplayMainExtra)} Hours
+                </div>
+                <div className="-mb-3 text-sm font-semibold">
+                  Completionist:
+                </div>
+                <div className="text-lg font-thin">
+                  {formatHours(item.gameplayCompletionist)} Hours
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

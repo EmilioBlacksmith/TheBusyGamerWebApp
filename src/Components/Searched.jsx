@@ -78,7 +78,7 @@ export default function Searched({
         <div className="h-2 w-full bg-app-complementary md:w-1/3"></div>
       </div>
       {isLoading ? (
-        <div className="flex justify-center align-middle text-xl font-black text-app-grey md:text-4xl">
+        <div className="flex animate-pulse justify-center align-middle text-base font-black  text-app-grey md:text-4xl">
           Searching... 🧐
         </div>
       ) : error ? (

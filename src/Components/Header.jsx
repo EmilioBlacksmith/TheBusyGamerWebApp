@@ -18,7 +18,7 @@ export default function Header({ valueSearched }) {
       <div className="md:p8 sticky top-0 z-10 flex h-24 w-full flex-col items-end justify-center gap-2 bg-app-secondary p-4 drop-shadow-3xl md:w-5/6 md:flex-row md:items-center md:justify-between md:rounded-b-xl">
         <div className="flex flex-col items-center text-2xl font-bold md:text-4xl">
           <a
-            href="https://emilioblacksmith.github.io/TheBusyGamerWebApp/"
+            href="/TheBusyGamerWebApp/"
             className="transition-all duration-150 ease-in-out hover:cursor-pointer hover:text-app-complementary hover:drop-shadow-3xl"
           >
             󱑔 The Busy Gamer
