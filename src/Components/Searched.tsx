@@ -3,15 +3,21 @@ import formatHours from "../utils/formatHours";
 
 const searchURL = "https://hltb-api.onrender.com/search?q=";
 
+interface SearchedProps {
+  searchValue: string;
+  newItemToAdd: (item: any) => void;
+  globalGameList: any[];
+}
+
 export default function Searched({
   searchValue,
   newItemToAdd,
   globalGameList,
-}) {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
+}: SearchedProps) {
+  const [data, setData] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentGlobalGameList, setGlobalGameList] = useState([]);
+  const [currentGlobalGameList, setGlobalGameList] = useState<any[]>([]);
 
   React.useEffect(() => {
     if (searchValue === "") {
@@ -53,13 +59,13 @@ export default function Searched({
     setGlobalGameList(globalGameList);
   }, [globalGameList]);
 
-  const containsItem = (item) => {
+  const containsItem = (item: any) => {
     return currentGlobalGameList.some(
       (existingItem) => existingItem.id === item.id,
     );
   };
 
-  const sendItemToTrack = (item) => {
+  const sendItemToTrack = (item: any) => {
     newItemToAdd(item);
   };
 

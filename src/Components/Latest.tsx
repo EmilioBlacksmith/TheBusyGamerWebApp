@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import formatHours from "../utils/formatHours";
 
+interface LatestProps {
+  newItemToAdd: (item: any) => void;
+  globalGameList: any[];
+}
+
 const baseURL = "https://hltb-api.onrender.com/topGames";
 
-export default function Latest({ newItemToAdd, globalGameList }) {
-  const [data, setData] = useState([]);
-  const [currentGlobalGameList, setGlobalGameList] = useState([]);
+export default function Latest({ newItemToAdd, globalGameList }: LatestProps) {
+  const [data, setData] = useState<any[]>([]);
+  const [currentGlobalGameList, setGlobalGameList] = useState<any[]>([]);
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -25,14 +30,13 @@ export default function Latest({ newItemToAdd, globalGameList }) {
   useEffect(() => {
     setGlobalGameList(globalGameList);
   }, [globalGameList]);
-    }
-  };
 
-  const sendItemToTrack = (item) => {
+
+  const sendItemToTrack = (item: any) => {
     newItemToAdd(item);
   };
 
-  const containsItem = (item) => {
+  const containsItem = (item: any) => {
     return currentGlobalGameList.some(
       (existingItem) => existingItem.id === item.id,
     );

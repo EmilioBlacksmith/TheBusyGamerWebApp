@@ -1,4 +1,4 @@
-export default function formatHours(hours) {
+export default function formatHours(hours: number): number | string {
   const integerPart = Math.floor(hours);
   const decimalPart = +(hours - integerPart).toFixed(2);
 

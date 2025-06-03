@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDom from "react-dom";
 
-export default function SearchBox({ open, onClose, valueSearched }) {
-  const [value, setValue] = useState("");
-  const searchBarRef = useRef(null);
+interface SearchBoxProps {
+  open: boolean;
+  onClose: () => void;
+  valueSearched: (value: string) => void;
+}
+
+export default function SearchBox({ open, onClose, valueSearched }: SearchBoxProps) {
+  const [value, setValue] = useState<string>("");
+  const searchBarRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (open && searchBarRef.current) {
@@ -11,11 +17,11 @@ export default function SearchBox({ open, onClose, valueSearched }) {
     }
   }, [open]);
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
 
-  const onSearch = (event) => {
+  const onSearch = (event: React.FormEvent) => {
     event.preventDefault();
 
     if (value === "") {

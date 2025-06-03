@@ -8,19 +8,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
-  const [searchedData, setSearchedData] = useState("");
-  const [newItemToAdd, setNewItemToAdd] = useState([]);
-  const [gameListGlobal, setGameListGlobal] = useState([]);
+  const [searchedData, setSearchedData] = useState<string>("");
+  const [newItemToAdd, setNewItemToAdd] = useState<any[]>([]);
+  const [gameListGlobal, setGameListGlobal] = useState<any[]>([]);
 
-  const handleDataFromChild = (data) => {
+  const handleDataFromChild = (data: string) => {
     setSearchedData(data);
   };
 
-  const handleNewTracking = (item) => {
+  const handleNewTracking = (item: any) => {
     setNewItemToAdd(item);
   };
 
-  const handleGameListUpdate = (gameList) => {
+  const handleGameListUpdate = (gameList: any[]) => {
     setGameListGlobal(gameList);
   };
 

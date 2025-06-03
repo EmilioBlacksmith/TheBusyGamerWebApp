@@ -2,46 +2,51 @@ import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import formatHours from "../utils/formatHours";
 
-export default function Tracking({ newItemToTrack, listOfGames }) {
+interface TrackingProps {
+  newItemToTrack: any;
+  listOfGames: (games: any[]) => void;
+}
+
+export default function Tracking({ newItemToTrack, listOfGames }: TrackingProps) {
   // Persistent Local Data
-  const [trackingList, setTrackingList] = useState(() => {
+  const [trackingList, setTrackingList] = useState<any[]>(() => {
     const localData = localStorage.getItem("trackingList");
     return localData ? JSON.parse(localData) : [];
   });
-  const [hoursAmount, setHoursAmount] = useState(() => {
+  const [hoursAmount, setHoursAmount] = useState<number>(() => {
     const localData = localStorage.getItem("hoursAmount");
     return localData ? parseFloat(localData) : 0;
   });
-  const [scheduleType, setScheduleType] = useState(() => {
+  const [scheduleType, setScheduleType] = useState<string>(() => {
     const localData = localStorage.getItem("scheduleType");
     return localData ? localData : "daily";
   });
-  const [focusType, setFocusType] = useState(() => {
+  const [focusType, setFocusType] = useState<string>(() => {
     const localData = localStorage.getItem("focusType");
     return localData ? localData : "gameplayMain";
   });
 
-  const [isActive, setIsActive] = useState(true);
-  const [longestGame, setLongestGame] = useState(0);
-  const [shortestGame, setShortestGame] = useState(0);
-  const [timeGameplayMain, setTimeGameplayMain] = useState(0);
-  const [timeGameplayMainExtras, setTimeGameplayMainExtras] = useState(0);
-  const hoursAmountInput = useRef(0);
-  const [displayedResults, setDisplayResults] = useState("");
+  const [isActive, setIsActive] = useState<boolean>(true);
+  const [longestGame, setLongestGame] = useState<number>(0);
+  const [shortestGame, setShortestGame] = useState<number>(0);
+  const [timeGameplayMain, setTimeGameplayMain] = useState<number>(0);
+  const [timeGameplayMainExtras, setTimeGameplayMainExtras] = useState<number>(0);
+  const hoursAmountInput = useRef<number>(0);
+  const [displayedResults, setDisplayResults] = useState<string>("");
 
   const toggleTrackingSection = () => {
     setIsActive(!isActive);
   };
 
-  const addNewItemToList = (item) => {
+  const addNewItemToList = (item: any) => {
     setTrackingList((prevList) => [...prevList, item]);
   };
 
-  const deleteEntry = (item) => {
+  const deleteEntry = (item: any) => {
     setTrackingList((prevList) => prevList.filter((x) => x !== item));
   };
 
-  const containsItem = (item) => {
+  const containsItem = (item: any) => {
     return trackingList.some((existingItem) => existingItem.id === item.id);
   };
 
