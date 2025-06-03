@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import formatHours from "../utils/formatHours";
 
 const searchURL = "https://hltb-api.onrender.com/search?q=";
 
@@ -56,15 +57,6 @@ export default function Searched({
     return currentGlobalGameList.some(
       (existingItem) => existingItem.id === item.id,
     );
-  };
-
-  const formatHours = (hours) => {
-    if (hours % 1 === 0.5 || hours % 1 === 0.75 || hours % 1 === 0.25) {
-      const integerPart = Math.floor(hours);
-      return `${integerPart}½`;
-    } else {
-      return hours;
-    }
   };
 
   const sendItemToTrack = (item) => {

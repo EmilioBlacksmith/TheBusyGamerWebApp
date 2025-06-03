@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
+import formatHours from "../utils/formatHours";
 
 export default function Tracking({ newItemToTrack, listOfGames }) {
   // Persistent Local Data
@@ -94,18 +95,6 @@ export default function Tracking({ newItemToTrack, listOfGames }) {
     }
   };
 
-  const formatHours = (hours) => {
-    const integerPart = Math.floor(hours);
-    const decimalPart = hours - integerPart;
-
-    if (decimalPart === 0.25 || decimalPart === 0.75) {
-      return `${integerPart}${decimalPart * 10}`;
-    } else if (decimalPart === 0.5) {
-      return `${integerPart}½`;
-    } else {
-      return hours;
-    }
-  };
 
   const totalSum = () => {
     switch (focusType) {

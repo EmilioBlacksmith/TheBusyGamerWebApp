@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import formatHours from "../utils/formatHours";
 
 const baseURL = "https://hltb-api.onrender.com/topGames";
 
@@ -24,17 +25,6 @@ export default function Latest({ newItemToAdd, globalGameList }) {
   useEffect(() => {
     setGlobalGameList(globalGameList);
   }, [globalGameList]);
-
-  const formatHours = (hours) => {
-    const integerPart = Math.floor(hours);
-    const decimalPart = hours - integerPart;
-
-    if (decimalPart === 0.25 || decimalPart === 0.75) {
-      return `${integerPart}${decimalPart * 10}`;
-    } else if (decimalPart === 0.5) {
-      return `${integerPart}½`;
-    } else {
-      return hours;
     }
   };
 
