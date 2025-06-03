@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import SearchBox from "./SearchBox";
 
-export default function Header({ valueSearched }) {
-  const [isModalOpen, setModalIsOpen] = useState(false);
-  const [isSearchBoxOpen, setSearchBoxIsOpen] = useState(false);
+interface HeaderProps {
+  valueSearched: (data: string) => void;
+}
+
+export default function Header({ valueSearched }: HeaderProps) {
+  const [isModalOpen, setModalIsOpen] = useState<boolean>(false);
+  const [isSearchBoxOpen, setSearchBoxIsOpen] = useState<boolean>(false);
 
   const toggleModal = () => setModalIsOpen(!isModalOpen);
   const toggleSearch = () => setSearchBoxIsOpen(!isSearchBoxOpen);

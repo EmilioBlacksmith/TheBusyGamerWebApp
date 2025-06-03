@@ -1,7 +1,13 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-export default function Modal({ open, children, onClose }) {
+interface ModalProps {
+  open: boolean;
+  children: React.ReactNode;
+  onClose: () => void;
+}
+
+export default function Modal({ open, children, onClose }: ModalProps) {
   if (!open) return null;
 
   return ReactDom.createPortal(

@@ -6,9 +6,13 @@ export default function ContentSection({
   searchedData,
   newItemToAdd,
   globalGameList,
+}: {
+  searchedData: string;
+  newItemToAdd: (item: any) => void;
+  globalGameList: any[];
 }) {
-  const [currentSearch, setCurrentSearch] = useState("");
-  const [currentGlobalGameList, setGlobalGameList] = useState([]);
+  const [currentSearch, setCurrentSearch] = useState<string>("");
+  const [currentGlobalGameList, setGlobalGameList] = useState<any[]>([]);
 
   useEffect(() => {
     setCurrentSearch(searchedData);
